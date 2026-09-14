@@ -358,7 +358,7 @@
       </nav>
 
       <!-- Right: Resume Requisition & Theme Mode Switcher -->
-      <div class="flex items-center gap-2">
+      <div class="flex items-center gap-2.5 ml-6 lg:ml-10 pl-4 lg:pl-6 border-l border-[var(--border-line)]">
         <button onclick="downloadResume()" class="nier-menu-btn text-xs py-1.5 px-3 border border-[var(--border-line)]" title="Download Official Resume PDF">
           <span class="nier-sq"></span>
           <span>Resume [PDF]</span>
@@ -605,6 +605,19 @@
           <p class="text-xs sm:text-sm font-sans text-[var(--text-secondary)] mt-2 leading-relaxed">
             Designed and programmed a 2D retro action-platformer combining the arcade mechanics of Mappy with the thematic aesthetic of <strong>NieR: Automata</strong>. Constructed custom 2B character animation frames, sprite loops, cover art, randomized item-spawning logic, and enemy AI pathfinding algorithms.
           </p>
+
+          <!-- Mappy x NieR Interactive Media Carousel -->
+          <div class="relative aspect-[16/10] bg-black/60 border border-[var(--border-line)] flex items-center justify-center overflow-hidden my-3 cursor-pointer" onclick="openProjectGallery('mappy')">
+            <img id="card-img-mappy" src="Hardware-Software-Projects/Mappy X Nier Defold Game/Overview.png" alt="Mappy x NieR Overview" class="media-contain max-h-full max-w-full p-2" />
+            <button onclick="event.stopPropagation(); changeCardSlide('mappy', -1)" class="nier-card-arrow absolute left-2 top-1/2 -translate-y-1/2" aria-label="Previous Media">◀ PREV</button>
+            <button onclick="event.stopPropagation(); changeCardSlide('mappy', 1)" class="nier-card-arrow absolute right-2 top-1/2 -translate-y-1/2" aria-label="Next Media">NEXT ▶</button>
+            <div class="absolute bottom-2 right-2 bg-black/80 text-[10px] font-mono text-[#dad5bf] px-2 py-0.5 border border-white/20">
+              <span id="card-counter-mappy">1 / 2</span>
+            </div>
+            <button onclick="event.stopPropagation(); openProjectGallery('mappy')" class="absolute top-2 right-2 bg-black/80 text-[10px] font-mono text-white px-2 py-0.5 border border-white/20 hover:bg-yorha-hazard">
+              🔍 Inspect Fullscreen
+            </button>
+          </div>
         </div>
 
         <div class="space-y-3">
@@ -620,9 +633,9 @@
               <span class="nier-sq"></span>
               <span>Play Game on Poki →</span>
             </a>
-            <button onclick="openMediaModal('video', 'Hardware-Software-Projects/Mappy X Nier Defold Game/SECV4213-TASK 1.mp4', 'Mappy x NieR — Gameplay Video', 'Custom 2B character sprite animations, item pickup logic, and enemy pathfinding in action.')" class="nier-menu-btn text-xs py-2 flex-1 justify-center">
+            <button onclick="openProjectGallery('mappy')" class="nier-menu-btn text-xs py-2 flex-1 justify-center">
               <span class="nier-sq"></span>
-              <span>Watch Video ▶</span>
+              <span>View Overview & Video 🔍</span>
             </button>
           </div>
         </div>
@@ -1548,6 +1561,12 @@
         { type: 'image', src: 'Hardware-Software-Projects/Google Play Store Published/Whack-A-Word-Ham/Screenshot_7_WhackAWordHam.jpg', title: 'Whack-A-Word-Ham // Screenshot 7', caption: 'Settings and gameplay mode customization.' }
       ],
 
+      // Mappy x NieR: 2 Media Items (Overview Image + Gameplay Video)
+      mappy: [
+        { type: 'image', src: 'Hardware-Software-Projects/Mappy X Nier Defold Game/Overview.png', title: 'Mappy x NieR // Game Overview', caption: 'Custom 2B character sprite animations, retro platformer level layout, and in-game UI designed in Defold engine.' },
+        { type: 'video', src: 'Hardware-Software-Projects/Mappy X Nier Defold Game/SECV4213-TASK 1.mp4', title: 'Mappy x NieR // Gameplay Video Walkthrough', caption: 'Custom 2B character sprite animations, item pickup logic, and enemy pathfinding in action.' }
+      ],
+
       // HoloLingua: 10 Media Items (Video + 9 Screenshots)
       hololingua: [
         { type: 'video', src: 'Hardware-Software-Projects/HoloLingua [My Final Year Project]/Hololingua.mp4', title: 'HoloLingua VR // Full Video Walkthrough', caption: 'Full Meta Quest VR walkthrough demonstration of AI conversational tutor.' },
@@ -1639,6 +1658,7 @@
     // -------------------------------------------------------------
     const cardSlideIndices = {
       whack: 0,
+      mappy: 0,
       hololingua: 0,
       tender: 0,
       hosptracker: 0,
