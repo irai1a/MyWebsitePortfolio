@@ -1,0 +1,1431 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth theme-sand">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAKHIRAH SHAKILA | Computer Science & Multimedia Software Engineer</title>
+  <meta name="description" content="Portfolio of Fakhirah Shakila binti Khairul Ariffin — Software Engineer, Game & VR Developer, and Graphic/Canva Designer (UTM Bachelor of Computer Science)." />
+  
+  <!-- Google Fonts: Plus Jakarta Sans, Share Tech Mono, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"Share Tech Mono"', '"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            yorha: {
+              sand: '#d5cfb9',
+              'sand-light': '#e3decb',
+              'sand-dark': '#c4bd9f',
+              'sand-muted': '#7a735c',
+              bunker: '#181714',
+              'bunker-surface': '#22201b',
+              'bunker-elevated': '#2d2a23',
+              'bunker-border': '#443f34',
+              text: '#363227',
+              highlight: '#484335',
+              hazard: '#a8421d',
+              'hazard-bright': '#c25c34',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* =========================================================================
+       NieR: Automata Authentic UI Design System (Matched to image.png)
+       ========================================================================= */
+    :root.theme-sand {
+      --bg-main: #d3cdb7;
+      --bg-surface: #c7c1a8;
+      --bg-menu-item: rgba(70, 65, 50, 0.14);
+      --bg-menu-active: #3a362b;
+      --text-main: #332f25;
+      --text-secondary: #5a5442;
+      --text-dim: #78705a;
+      --text-active: #eae5d3;
+      --border-line: #8c846c;
+      --border-dark: #4d4737;
+      --accent-hazard: #a8421d;
+      --shadow-header: rgba(55, 50, 38, 0.28);
+      --cursor-color: #3a362b;
+      --card-bg: rgba(215, 209, 189, 0.7);
+      --card-border: #999076;
+    }
+
+    :root.theme-bunker {
+      --bg-main: #161512;
+      --bg-surface: #22201a;
+      --bg-menu-item: rgba(218, 212, 187, 0.1);
+      --bg-menu-active: #dad4bb;
+      --text-main: #dad4bb;
+      --text-secondary: #9e9680;
+      --text-dim: #6d6756;
+      --text-active: #161512;
+      --border-line: #423d32;
+      --border-dark: #6e6754;
+      --accent-hazard: #c25c34;
+      --shadow-header: rgba(0, 0, 0, 0.6);
+      --cursor-color: #dad4bb;
+      --card-bg: rgba(34, 32, 26, 0.85);
+      --card-border: #4a4436;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      transition: background-color 0.2s ease, color 0.2s ease;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    /* NieR Header Typography with Signature Drop Shadow (as seen in SETTINGS) */
+    .nier-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-main);
+      text-shadow: 2.5px 2.5px 0px var(--shadow-header);
+    }
+
+    /* Decorative Geometric Background Watermark (concentric arcs & diagonal lines) */
+    .nier-bg-watermark {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.22;
+      background-image: 
+        radial-gradient(circle at 15% 30%, transparent 280px, var(--border-line) 281px, transparent 282px),
+        radial-gradient(circle at 15% 30%, transparent 380px, var(--border-line) 381px, transparent 382px),
+        radial-gradient(circle at 85% 75%, transparent 320px, var(--border-line) 321px, transparent 322px),
+        linear-gradient(45deg, transparent 49.6%, var(--border-line) 50%, transparent 50.4%),
+        linear-gradient(45deg, transparent 49.1%, var(--border-line) 49.3%, transparent 49.5%);
+      background-size: 100% 100%, 100% 100%, 100% 100%, 800px 800px, 800px 800px;
+    }
+
+    /* YoRHa Border Pattern (Repeating triangles and 3-dots from image.png) */
+    .yorha-border-top {
+      height: 14px;
+      width: 100%;
+      background-repeat: repeat-x;
+      background-size: 32px 14px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='14' viewBox='0 0 32 14'%3E%3Cline x1='0' y1='2' x2='32' y2='2' stroke='%236e6754' stroke-width='1'/%3E%3Cpolygon points='4,2 7,8 10,2' fill='%236e6754'/%3E%3Ccircle cx='20' cy='5' r='1' fill='%236e6754'/%3E%3Ccircle cx='17' cy='9' r='1' fill='%236e6754'/%3E%3Ccircle cx='23' cy='9' r='1' fill='%236e6754'/%3E%3C/svg%3E");
+    }
+    .yorha-border-bottom {
+      height: 14px;
+      width: 100%;
+      background-repeat: repeat-x;
+      background-size: 32px 14px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='14' viewBox='0 0 32 14'%3E%3Cline x1='0' y1='12' x2='32' y2='12' stroke='%236e6754' stroke-width='1'/%3E%3Cpolygon points='4,12 7,6 10,12' fill='%236e6754'/%3E%3Ccircle cx='20' cy='9' r='1' fill='%236e6754'/%3E%3Ccircle cx='17' cy='5' r='1' fill='%236e6754'/%3E%3Ccircle cx='23' cy='5' r='1' fill='%236e6754'/%3E%3C/svg%3E");
+    }
+
+    /* NieR Menu Item (Matching the exact buttons in image.png) */
+    .nier-menu-btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background-color: var(--bg-menu-item);
+      color: var(--text-main);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 600;
+      font-size: 0.82rem;
+      letter-spacing: 0.06em;
+      padding: 0.5rem 1.15rem;
+      border: 1px solid transparent;
+      transition: all 0.12s ease;
+      cursor: pointer;
+      user-select: none;
+      text-decoration: none;
+    }
+    .nier-menu-btn .nier-sq {
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      background-color: var(--text-main);
+      transition: background-color 0.12s ease;
+    }
+    .nier-menu-btn:hover {
+      background-color: var(--bg-surface);
+      border-color: var(--border-line);
+    }
+    .nier-menu-btn.active {
+      background-color: var(--bg-menu-active);
+      color: var(--text-active) !important;
+      border-color: var(--border-dark);
+      font-weight: 700;
+      box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.15);
+    }
+    .nier-menu-btn.active .nier-sq {
+      background-color: var(--text-active);
+    }
+
+    /* Active Indicator Cursor (the arrow cursor ◀• in image.png) */
+    .nier-menu-btn.active::before {
+      content: '◆';
+      position: absolute;
+      left: -16px;
+      font-size: 9px;
+      color: var(--cursor-color);
+      animation: cursor-pulse 1s infinite alternate;
+    }
+    @keyframes cursor-pulse {
+      0% { opacity: 0.6; transform: translateX(0); }
+      100% { opacity: 1; transform: translateX(2px); }
+    }
+
+    /* NieR Card Frame */
+    .nier-card {
+      border: 1px solid var(--card-border);
+      background-color: var(--card-bg);
+      backdrop-filter: blur(4px);
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .nier-card:hover {
+      border-color: var(--border-dark);
+      box-shadow: 4px 4px 0px rgba(70, 65, 50, 0.18);
+      transform: translateY(-2px);
+    }
+
+    /* Bottom Prompt Bar in image.png */
+    .nier-prompt-bar {
+      border-top: 1px solid var(--border-line);
+      border-bottom: 1px solid var(--border-line);
+      background-color: var(--bg-surface);
+      padding: 0.5rem 1rem;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 7px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg-main);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--border-line);
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--border-dark);
+    }
+  </style>
+</head>
+
+<body class="relative overflow-x-hidden min-h-screen">
+
+  <!-- Faint Watermark Geometry (Concentric arcs & technical grid) -->
+  <div class="nier-bg-watermark"></div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="fixed bottom-12 right-6 z-50 flex flex-col gap-2 pointer-events-none font-mono text-xs"></div>
+
+  <!-- ========================================================================= -->
+  <!-- TOP YORHA PATTERN BORDER -->
+  <!-- ========================================================================= -->
+  <div class="yorha-border-top z-40 relative"></div>
+
+  <!-- ========================================================================= -->
+  <!-- TOP NAVIGATION & STATUS HEADER -->
+  <!-- ========================================================================= -->
+  <header class="border-b border-[var(--border-line)] px-4 sm:px-8 py-3.5 sticky top-0 bg-[var(--bg-main)]/95 backdrop-blur-md z-30 transition-colors">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      
+      <!-- Left: Full Name & Academic Designation -->
+      <a href="#" class="flex items-center gap-3.5 focus:outline-none group">
+        <div class="w-8 h-8 border border-[var(--border-dark)] bg-[var(--bg-menu-active)] flex items-center justify-center font-mono font-bold text-xs text-[var(--text-active)]">
+          FS
+        </div>
+        <div class="flex flex-col">
+          <span class="nier-title text-sm sm:text-base tracking-widest leading-tight">
+            FAKHIRAH SHAKILA
+          </span>
+          <span class="text-[10px] font-mono text-[var(--text-secondary)] tracking-tight">
+            B.CS (GRAPHICS & MULTIMEDIA) // UNIVERSITI TEKNOLOGI MALAYSIA
+          </span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Menu (Matching image.png menu buttons) -->
+      <nav class="hidden lg:flex items-center gap-2">
+        <a href="#about" class="nier-menu-btn active" onclick="activateMenu(this)">
+          <span class="nier-sq"></span>
+          <span>Profile</span>
+        </a>
+        <a href="#hardware-software" class="nier-menu-btn" onclick="activateMenu(this)">
+          <span class="nier-sq"></span>
+          <span>Hardware / Software</span>
+        </a>
+        <a href="#games-vr" class="nier-menu-btn" onclick="activateMenu(this)">
+          <span class="nier-sq"></span>
+          <span>Games & VR</span>
+        </a>
+        <a href="#designs" class="nier-menu-btn" onclick="activateMenu(this)">
+          <span class="nier-sq"></span>
+          <span>Designs & Canva</span>
+        </a>
+        <a href="#education" class="nier-menu-btn" onclick="activateMenu(this)">
+          <span class="nier-sq"></span>
+          <span>Specs & Skills</span>
+        </a>
+        <a href="#contact" class="nier-menu-btn" onclick="activateMenu(this)">
+          <span class="nier-sq"></span>
+          <span>Transmit</span>
+        </a>
+      </nav>
+
+      <!-- Right: Resume Requisition & Theme Mode Switcher -->
+      <div class="flex items-center gap-2.5">
+        <button onclick="downloadResume()" class="nier-menu-btn text-xs py-1.5 px-3 border border-[var(--border-line)]" title="Download Official Resume PDF">
+          <span class="nier-sq"></span>
+          <span>Resume [PDF]</span>
+        </button>
+
+        <button onclick="toggleTheme()" class="nier-menu-btn text-xs py-1.5 px-3 border border-[var(--border-line)]" title="Toggle between YoRHa Sand (image.png) and Bunker Dark Mode">
+          <span class="nier-sq"></span>
+          <span id="theme-btn-text">BUNKER [DARK]</span>
+        </button>
+
+        <!-- Mobile Menu Toggle -->
+        <button id="mobile-toggle-btn" class="lg:hidden p-2 border border-[var(--border-line)] text-[var(--text-main)] focus:outline-none">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-16 6h16"></path>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div id="mobile-drawer" class="lg:hidden hidden mt-3 border-t border-[var(--border-line)] pt-3 pb-2 flex flex-col gap-1.5 font-mono text-xs">
+      <a href="#about" class="nier-menu-btn py-2">[ ■ PROFILE // INTEL ]</a>
+      <a href="#hardware-software" class="nier-menu-btn py-2">[ ■ HARDWARE & SOFTWARE PROJECTS ]</a>
+      <a href="#games-vr" class="nier-menu-btn py-2">[ ■ GAMES & VR (MAPPY X NIER) ]</a>
+      <a href="#designs" class="nier-menu-btn py-2">[ ■ DESIGN PORTFOLIO & CANVA ]</a>
+      <a href="#education" class="nier-menu-btn py-2">[ ■ EDUCATION & CERTIFICATIONS ]</a>
+      <a href="#contact" class="nier-menu-btn py-2">[ ■ CONTACT & TRANSMISSION ]</a>
+    </div>
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- HERO / PROFILE SECTION -->
+  <!-- ========================================================================= -->
+  <section id="about" class="py-14 sm:py-20 px-4 sm:px-8 max-w-7xl mx-auto relative z-10">
+    
+    <!-- Big NieR Section Header (Identical to SETTINGS title in image.png) -->
+    <div class="mb-10">
+      <div class="flex items-center gap-3 font-mono text-xs text-[var(--text-dim)] uppercase tracking-widest mb-1">
+        <span class="w-2.5 h-2.5 bg-[var(--text-main)] inline-block"></span>
+        <span>SECTION 01 // OPERATOR DOSSIER</span>
+      </div>
+      <h1 class="nier-title text-4xl sm:text-6xl md:text-7xl">
+        FAKHIRAH SHAKILA
+      </h1>
+      <p class="font-mono text-xs sm:text-sm text-[var(--text-secondary)] mt-2 tracking-wider">
+        FAKHIRAH SHAKILA BINTI KHAIRUL ARIFFIN // COMPUTER SCIENCE (GRAPHICS & MULTIMEDIA SOFTWARE)
+      </p>
+    </div>
+
+    <!-- Dual Column Dossier Layout -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- Left Column: Biography & Experience Overview -->
+      <div class="lg:col-span-8 nier-card p-6 sm:p-10 space-y-6">
+        
+        <!-- Experience Callout Banner -->
+        <div class="border border-[var(--border-line)] bg-[var(--bg-surface)] p-4 font-mono text-xs text-[var(--text-secondary)] space-y-1">
+          <div class="flex justify-between items-center text-[var(--text-main)] font-bold">
+            <span>CURRENT / RECENT EXPERIENCE:</span>
+            <span class="text-yorha-hazard">SEPT 2025 – FEB 2026</span>
+          </div>
+          <p class="text-sm font-sans text-[var(--text-main)] font-semibold mt-1">
+            SOFTWARE ENGINEER INTERN | AR Mechatronics PLT (Skudai, Johor)
+          </p>
+          <p class="text-xs font-sans leading-relaxed text-[var(--text-secondary)] pt-1">
+            Working on Raspberry Pi-based automation systems (MBPG Smart Tender Box) utilizing Python, Django, Flask, and GPIO. Integrated solenoids, sensors, and camera units; developed web-to-hardware REST APIs; engineered system documentation and enhanced Tkinter/Django graphical interfaces.
+          </p>
+        </div>
+
+        <!-- Professional Narrative -->
+        <div class="space-y-3 font-sans text-sm sm:text-base leading-relaxed text-[var(--text-secondary)]">
+          <p>
+            I am a final-year <strong>Computer Science (Graphics and Multimedia Software) With Honours</strong> student at <strong>Universiti Teknologi Malaysia (UTM)</strong> with a <strong>3.44 CGPA</strong>, graduating July 2026.
+          </p>
+          <p>
+            My engineering expertise bridges <strong>embedded hardware-software systems (Raspberry Pi, IoT, Python, Django)</strong>, <strong>game and VR engineering (Unity, Godot, Defold, OpenXR, Convai AI SDK)</strong>, and <strong>high-end graphic design (Canva Design School Certified, Figma UI/UX prototyping, and 3D Blender modelling)</strong>.
+          </p>
+          <p class="font-mono text-xs text-[var(--text-main)] border-l-2 border-[var(--border-dark)] pl-3">
+            Highlight: Programmed <strong class="text-yorha-hazard">MAPPY X NIER</strong>, an authentic 2D action-platformer fanmade crossover combining retro arcade gameplay with the visual aesthetic and custom 2B animation loops of <em>NieR: Automata</em>.
+          </p>
+        </div>
+
+        <!-- Contact Quick-Badges -->
+        <div class="pt-4 border-t border-[var(--border-line)] flex flex-wrap gap-2.5 font-mono text-xs">
+          <span class="px-3 py-1 bg-[var(--bg-surface)] border border-[var(--border-line)]">📍 Johor Bahru, Johor, Malaysia</span>
+          <span class="px-3 py-1 bg-[var(--bg-surface)] border border-[var(--border-line)]">✉️ kairairaila@gmail.com</span>
+          <span class="px-3 py-1 bg-[var(--bg-surface)] border border-[var(--border-line)]">📞 (+60) 11-11979410</span>
+          <a href="https://linkedin.com/in/fakhirah-shakila-2b2040127" target="_blank" rel="noopener noreferrer" class="px-3 py-1 bg-[var(--bg-menu-active)] text-[var(--text-active)] hover:opacity-90 transition-opacity">
+            🔗 LinkedIn Profile →
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Right Column: Official Certificate & Quick Links -->
+      <div class="lg:col-span-4 space-y-5">
+        
+        <!-- Canva Certificate Box -->
+        <div class="nier-card p-6 border-2 border-[var(--border-dark)] bg-[var(--bg-surface)] flex flex-col items-center text-center space-y-3">
+          <img src="Designs-Portfolio/Certificates/iraila-graphic-design-essentials-badge.png" alt="Canva Design School Badge" class="w-24 h-24 object-contain shadow-md" />
+          <div>
+            <span class="font-mono text-[10px] text-yorha-hazard font-bold tracking-wider uppercase block">CANVA DESIGN SCHOOL VERIFIED</span>
+            <h4 class="font-mono font-bold text-sm text-[var(--text-main)] mt-0.5">GRAPHIC DESIGN ESSENTIALS</h4>
+            <p class="text-[11px] font-sans text-[var(--text-secondary)] mt-1">Issued by The Canva Team, Sept 2026</p>
+          </div>
+          <div class="pt-2 w-full flex flex-col gap-2">
+            <a href="Designs-Portfolio/Certificates/iraila-graphic-design-essentials-certificate.pdf" target="_blank" class="nier-menu-btn text-xs py-1.5 justify-center w-full">
+              <span class="nier-sq"></span>
+              <span>View Certificate PDF →</span>
+            </a>
+            <a href="https://canva.link/3h9efrqll820h0u" target="_blank" class="nier-menu-btn active text-xs py-1.5 justify-center w-full">
+              <span class="nier-sq"></span>
+              <span>Canva Portfolio Link →</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Academic Snapshot Box -->
+        <div class="nier-card p-5 font-mono text-xs space-y-2">
+          <div class="font-bold text-[var(--text-main)] border-b border-[var(--border-line)] pb-1.5 flex justify-between">
+            <span>ACADEMIC STATUS</span>
+            <span>UTM 2022 – 2026</span>
+          </div>
+          <div class="flex justify-between text-[11px]">
+            <span class="text-[var(--text-secondary)]">Degree:</span>
+            <span class="text-[var(--text-main)] font-semibold">B.CS (Graphics & Multimedia)</span>
+          </div>
+          <div class="flex justify-between text-[11px]">
+            <span class="text-[var(--text-secondary)]">Cumulative GPA:</span>
+            <span class="text-yorha-hazard font-bold text-sm">3.44 / 4.00</span>
+          </div>
+          <div class="flex justify-between text-[11px]">
+            <span class="text-[var(--text-secondary)]">Location:</span>
+            <span>Skudai, Johor, Malaysia</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- SECTION 02: HARDWARE & SOFTWARE PROJECTS -->
+  <!-- ========================================================================= -->
+  <section id="hardware-software" class="py-14 sm:py-20 px-4 sm:px-8 max-w-7xl mx-auto relative z-10 border-t border-[var(--border-line)]">
+    
+    <div class="mb-10">
+      <div class="flex items-center gap-3 font-mono text-xs text-[var(--text-dim)] uppercase tracking-widest mb-1">
+        <span class="w-2.5 h-2.5 bg-[var(--text-main)] inline-block"></span>
+        <span>SECTION 02 // EMBEDDED SYSTEMS & SOFTWARE ENGINEERING</span>
+      </div>
+      <h2 class="nier-title text-3xl sm:text-5xl">
+        HARDWARE & SOFTWARE
+      </h2>
+      <p class="font-mono text-xs sm:text-sm text-[var(--text-secondary)] mt-1">
+        Raspberry Pi embedded automation, IoT REST APIs, robotics, and full-stack software applications.
+      </p>
+    </div>
+
+    <!-- Grid of Real Resume Projects -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <!-- Project 1: MBPG Smart Tender Box System -->
+      <div class="nier-card overflow-hidden flex flex-col justify-between group">
+        <!-- Thumbnail -->
+        <div class="aspect-video relative overflow-hidden bg-black/40 border-b border-[var(--border-line)] cursor-pointer" onclick="openMediaModal('image', 'Hardware-Software-Projects/MBPG Smart Tender Box System/tenderA.jpg', 'MBPG SMART TENDER BOX SYSTEM', 'Raspberry Pi-based Tender Box automation system using Python, Django, Flask, and GPIO. Integrated solenoid physical security locks, sensors, cameras, and web-to-hardware REST APIs.')">
+          <img src="Hardware-Software-Projects/MBPG Smart Tender Box System/tenderA.jpg" alt="MBPG Smart Tender Box System" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+          <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <span class="px-2.5 py-1 bg-black/80 text-[11px] font-mono text-white border border-white/20">
+              🔍 Click to Inspect Hardware
+            </span>
+          </div>
+          <div class="absolute top-2 left-2">
+            <span class="px-2 py-0.5 bg-black/80 text-[10px] font-mono text-white border border-white/20">
+              RASPBERRY PI / IOT
+            </span>
+          </div>
+        </div>
+
+        <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+          <div>
+            <div class="flex justify-between items-center font-mono text-[11px] text-[var(--text-dim)] pb-1.5 border-b border-[var(--border-line)]">
+              <span class="font-bold text-[var(--text-main)]">[ EMBEDDED IOT ]</span>
+              <span>AR MECHATRONICS PLT</span>
+            </div>
+            <h3 class="nier-title text-base mt-2.5 text-[var(--text-main)]">
+              MBPG SMART TENDER BOX SYSTEM
+            </h3>
+            <p class="text-xs font-sans text-[var(--text-secondary)] mt-2 leading-relaxed">
+              Programmed and optimized Raspberry Pi control scripts using Python to automate physical security locks via solenoid relays. Integrated physical IoT devices with a Django backend and developed custom REST APIs to process web-hardware requests.
+            </p>
+          </div>
+
+          <div class="space-y-3">
+            <div class="pt-2 border-t border-[var(--border-line)] flex flex-wrap gap-1 font-mono text-[10px]">
+              <span class="px-2 py-0.5 bg-[var(--bg-surface)] border border-[var(--border-line)]">Python</span>
+              <span class="px-2 py-0.5 bg-[var(--bg-surface)] border border-[var(--border-line)]">Raspberry Pi</span>
+              <span class="px-2 py-0.5 bg-[var(--bg-surface)] border border-[var(--border-line)]">GPIO</span>
+              <span class="px-2 py-0.5 bg-[var(--bg-surface)] border border-[var(--border-line)]">Django REST</span>
+            </div>
+
+            <div class="flex gap-2">
+              <button onclick="openMediaModal('image', 'Hardware-Software-Projects/MBPG Smart Tender Box System/SystemArchiIntern-Page-2.drawio.png', 'MBPG Tender Box — System Architecture', 'Full hardware-software system architecture diagram showing Raspberry Pi, Django REST API, Solenoid Relays, and Camera integration.')" class="nier-menu-btn text-[11px] py-1.5 flex-1 justify-center">
+                <span class="nier-sq"></span>
+                <span>Architecture →</span>
+              </button>
+              <button onclick="openMediaModal('image', 'Hardware-Software-Projects/MBPG Smart Tender Box System/hSetup.png', 'MBPG Tender Box — Hardware Setup', 'Physical breadboard, relay modules, and Raspberry Pi GPIO pinout wiring setup.')" class="nier-menu-btn text-[11px] py-1.5 flex-1 justify-center">
+                <span class="nier-sq"></span>
+                <span>Setup →</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 2: Hosp-Tracker Navigation Robot -->
+      <div class="nier-card overflow-hidden flex flex-col justify-between group">
+        <!-- Thumbnail -->
+        <div class="aspect-video relative overflow-hidden bg-black/40 border-b border-[var(--border-line)] cursor-pointer" onclick="openMediaModal('image', 'Hardware-Software-Projects/Hosp-Tracker Navigation Robot [Robotic Design and Development Technology with Raspberry Pi Microprocessor]/Patient_POV_1.jpg', 'HOSP-TRACKER NAVIGATION ROBOT', 'Autonomous Raspbot navigation system for hospital environments with companion web dashboard.')">
+          <img src="Hardware-Software-Projects/Hosp-Tracker Navigation Robot [Robotic Design and Development Technology with Raspberry Pi Microprocessor]/Patient_POV_1.jpg" alt="Hosp-Tracker Dashboard" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+          <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <span class="px-2.5 py-1 bg-black/80 text-[11px] font-mono text-white border border-white/20">
+              🔍 Inspect Robot Dashboard
+            </span>
+          </div>
+          <div class="absolute top-2 left-2">
+            <span class="px-2 py-0.5 bg-black/80 text-[10px] font-mono text-white border border-white/20">
+              ROBOTICS & WEB
+            </span>
+          </div>
+        </div>
+
+        <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+          <div>
+            <div class="flex justify-between items-center font-mono text-[11px] text-[var(--text-dim)] pb-1.5 border-b border-[var(--border-line)]">
+              <span class="font-bold text-[var(--text-main)]">[ ROBOTICS & WEB ]</span>
+              <span>KPT CERTIFICATE</span>
+            </div>
+            <h3 class="nier-title text-base mt-2.5 text-[var(--text-main)]">
+              HOSP-TRACKER NAVIGATION ROBOT
+            </h3>
+            <p class="text-xs font-sans text-[var(--text-secondary)] mt-2 leading-relaxed">
+              Programmed a Raspbot automated navigation system for hospital environments as part of a Robotic Design Technology certification. Designed and prototyped a companion web dashboard to track and visualize patient journey flows alongside robot operations.
+            </p>
+          </div>
+
+          <div class="space-y-3">
+            <div class="pt-2 border-t border-[var(--border-line)] flex flex-wrap gap-1 font-mono text-[10px]">
+              <span class="px-2 py-0.5 bg-[var(--bg-surface)] border border-[var(--border-line)]">Raspberry Pi</span>
+              <span class="px-2 py-0.5 bg-[var(--bg-surface)] border border-[var(--border-line)]">Python</span>
+              <span class="px-2 py-0.5 bg-[var(--bg-surface)] border border-[var(--border-line)]">Raspbot</span>
+              <span class="px-2 py-0.5 bg-[var(--bg-surface)] border border-[var(--border-line)]">Telemetry</span>
+            </div>
+
+            <div class="flex gap-2">
+              <button onclick="openMediaModal('video', 'Hardware-Software-Projects/Hosp-Tracker Navigation Robot [Robotic Design and Development Technology with Raspberry Pi Microprocessor]/Demo HospTracker.MOV', 'Hosp-Tracker Robot — Video Demonstration', 'Demonstration of the autonomous navigation robot executing pathing and companion dashboard sync.')" class="nier-menu-btn active text-[11px] py-1.5 flex-1 justify-center">
+                <span class="nier-sq"></span>
+                <span>Watch Demo ▶</span>
+              </button>
+              <button onclick="openMediaModal('image', 'Hardware-Software-Projects/Hosp-Tracker Navigation Robot [Robotic Design and Development Technology with Raspberry Pi Microprocessor]/Patient_POV_2.jpg', 'Patient Journey View', 'Companion web telemetry interface for hospital logistics.')" class="nier-menu-btn text-[11px] py-1.5 flex-1 justify-center">
+                <span class="nier-sq"></span>
+                <span>POV 2 →</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 3: Whack-a-Word-Ham Published Mobile Game -->
+      <div class="nier-card overflow-hidden flex flex-col justify-between group">
+        <!-- Thumbnail -->
+        <div class="aspect-video relative overflow-hidden bg-black/40 border-b border-[var(--border-line)]">
+          <div class="w-full h-full bg-[var(--bg-surface)] flex flex-col items-center justify-center p-6 text-center">
+            <span class="font-mono text-2xl mb-1">🎮</span>
+            <span class="nier-title text-sm text-[var(--text-main)]">WHACK-A-WORD-HAM</span>
+            <span class="font-mono text-[10px] text-yorha-hazard mt-1 font-bold">GOOGLE PLAY STORE PUBLISHED</span>
+          </div>
+          <div class="absolute top-2 left-2">
+            <span class="px-2 py-0.5 bg-black/80 text-[10px] font-mono text-white border border-white/20">
+              PUBLISHED GAME
+            </span>
+          </div>
+        </div>
+
+        <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+          <div>
+            <div class="flex justify-between items-center font-mono text-[11px] text-[var(--text-dim)] pb-1.5 border-b border-[var(--border-line)]">
+              <span class="font-bold text-yorha-hazard">[ GOOGLE PLAY ]</span>
+              <span>SELF-PUBLISHED</span>
+            </div>
+            <h3 class="nier-title text-base mt-2.5 text-[var(--text-main)]">
+              WHACK-A-WORD-HAM (MOBILE)
+            </h3>
+            <p class="text-xs font-sans text-[var(--text-secondary)] mt-2 leading-relaxed">
+              Developed and self-published an interactive word puzzle game on the Google Play Store via Google Play Console. Programmed core gameplay loops using Python and Kivy, requiring players to dynamically rearrange letters into meaningful words.
+            </p>
+          </div>
+
+          <div class="space-y-3">
+            <div class="pt-2 border-t border-[var(--border-line)] flex flex-wrap gap-1 font-mono text-[10px]">
+              <span class="px-2 py-0.5 bg-[var(--bg-surface)] border border-[var(--border-line)]">Python</span>
+              <span class="px-2 py-0.5 bg-[var(--bg-surface)] border border-[var(--border-line)]">Kivy</span>
+              <span class="px-2 py-0.5 bg-[var(--bg-surface)] border border-[var(--border-line)]">Google Play Console</span>
+              <span class="px-2 py-0.5 bg-[var(--bg-surface)] border border-[var(--border-line)]">Antigravity IDE</span>
+            </div>
+
+            <button onclick="showToast('Published on Google Play Store via Google Play Console.')" class="nier-menu-btn text-[11px] py-1.5 w-full justify-center">
+              <span class="nier-sq"></span>
+              <span>Google Play Details</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- SECTION 03: GAMES & VR SIMULATION PROJECTS -->
+  <!-- ========================================================================= -->
+  <section id="games-vr" class="py-14 sm:py-20 px-4 sm:px-8 max-w-7xl mx-auto relative z-10 border-t border-[var(--border-line)]">
+    
+    <div class="mb-10">
+      <div class="flex items-center gap-3 font-mono text-xs text-[var(--text-dim)] uppercase tracking-widest mb-1">
+        <span class="w-2.5 h-2.5 bg-yorha-hazard inline-block"></span>
+        <span>SECTION 03 // VIRTUAL REALITY, SHADERS & GAME SYSTEMS</span>
+      </div>
+      <h2 class="nier-title text-3xl sm:text-5xl">
+        GAMES & VR PROJECTS
+      </h2>
+      <p class="font-mono text-xs sm:text-sm text-[var(--text-secondary)] mt-1">
+        Playable web games, VR language tutors, and the Mappy x NieR crossover game with live links.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+      <!-- Featured Game 1: Mappy x Nier (Fanmade Crossover) -->
+      <div class="nier-card p-6 sm:p-8 border-2 border-[var(--border-dark)] flex flex-col justify-between space-y-4">
+        <div>
+          <div class="flex justify-between items-center font-mono text-xs text-[var(--text-dim)] pb-2 border-b border-[var(--border-line)]">
+            <span class="font-bold text-yorha-hazard">[ FEATURED CROSSOVER ]</span>
+            <span>DEFOLD / LUA</span>
+          </div>
+          <h3 class="nier-title text-xl sm:text-2xl mt-3 text-[var(--text-main)]">
+            MAPPY X NIER (FANMADE CROSSOVER)
+          </h3>
+          <p class="text-xs sm:text-sm font-sans text-[var(--text-secondary)] mt-2 leading-relaxed">
+            Designed and programmed a 2D retro action-platformer combining the arcade mechanics of Mappy with the thematic aesthetic of <strong>NieR: Automata</strong>. Constructed custom 2B character animation frames, sprite loops, cover art, randomized item-spawning logic, and enemy AI pathfinding algorithms.
+          </p>
+        </div>
+
+        <div class="space-y-3">
+          <div class="pt-3 border-t border-[var(--border-line)] flex flex-wrap gap-1.5 font-mono text-[11px]">
+            <span class="px-2.5 py-1 bg-[var(--bg-menu-active)] text-[var(--text-active)]">NieR Aesthetic</span>
+            <span class="px-2.5 py-1 bg-[var(--bg-surface)] border border-[var(--border-line)]">Defold Engine</span>
+            <span class="px-2.5 py-1 bg-[var(--bg-surface)] border border-[var(--border-line)]">Lua</span>
+            <span class="px-2.5 py-1 bg-[var(--bg-surface)] border border-[var(--border-line)]">2D Animation</span>
+          </div>
+
+          <div class="flex flex-wrap gap-2">
+            <a href="https://poki.com/en/preview/465f799d-c402-4999-9d8b-847f4bd55dae/690fb03b-88a4-4da9-b8d3-b42563df2276" target="_blank" class="nier-menu-btn active text-xs py-2 flex-1 justify-center">
+              <span class="nier-sq"></span>
+              <span>Play Game on Poki →</span>
+            </a>
+            <button onclick="openMediaModal('video', 'Hardware-Software-Projects/Mappy X Nier Defold Game/SECV4213-TASK 1.mp4', 'Mappy x NieR — Gameplay Video', 'Custom 2B character sprite animations, item pickup logic, and enemy pathfinding in action.')" class="nier-menu-btn text-xs py-2 flex-1 justify-center">
+              <span class="nier-sq"></span>
+              <span>Watch Gameplay Video ▶</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Featured Game 2: HoloLingua (Final Year Project) -->
+      <div class="nier-card p-6 sm:p-8 border-2 border-[var(--border-dark)] flex flex-col justify-between space-y-4">
+        <div>
+          <div class="flex justify-between items-center font-mono text-xs text-[var(--text-dim)] pb-2 border-b border-[var(--border-line)]">
+            <span class="font-bold text-[var(--text-main)]">[ FINAL YEAR PROJECT ]</span>
+            <span>UNITY / OPENXR / CONVAI</span>
+          </div>
+          <h3 class="nier-title text-xl sm:text-2xl mt-3 text-[var(--text-main)]">
+            HOLOLINGUA: AI MULTILINGUAL VR TUTOR
+          </h3>
+          <p class="text-xs sm:text-sm font-sans text-[var(--text-secondary)] mt-2 leading-relaxed">
+            Developed a cutting-edge virtual reality language learning application featuring intelligent, AI-driven conversational avatars powered by the Convai SDK. Optimized rendering pipelines and build targets for standalone Meta Quest VR hardware.
+          </p>
+        </div>
+
+        <div class="space-y-3">
+          <div class="pt-3 border-t border-[var(--border-line)] flex flex-wrap gap-1.5 font-mono text-[11px]">
+            <span class="px-2.5 py-1 bg-[var(--bg-surface)] border border-[var(--border-line)]">Unity VR</span>
+            <span class="px-2.5 py-1 bg-[var(--bg-surface)] border border-[var(--border-line)]">OpenXR</span>
+            <span class="px-2.5 py-1 bg-[var(--bg-surface)] border border-[var(--border-line)]">Convai SDK</span>
+            <span class="px-2.5 py-1 bg-[var(--bg-surface)] border border-[var(--border-line)]">Meta Quest 3s</span>
+          </div>
+
+          <div class="flex flex-wrap gap-2">
+            <button onclick="openMediaModal('video', 'Hardware-Software-Projects/HoloLingua [My Final Year Project]/Hololingua.mp4', 'HoloLingua VR — Full Demonstration', 'AI-driven conversational language learning in immersive VR using Meta Quest 3s.')" class="nier-menu-btn active text-xs py-2 flex-1 justify-center">
+              <span class="nier-sq"></span>
+              <span>Watch VR Walkthrough ▶</span>
+            </button>
+            <button onclick="openMediaModal('image', 'Hardware-Software-Projects/HoloLingua [My Final Year Project]/play (1).png', 'HoloLingua — VR Gameplay Screen', 'Conversational AI interface with interactive avatar dialogue.')" class="nier-menu-btn text-xs py-2 flex-1 justify-center">
+              <span class="nier-sq"></span>
+              <span>VR Screenshot 🔍</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Featured Game 3: "I Don't Wanna Be Itik Salai" -->
+      <div class="nier-card p-6 sm:p-8 flex flex-col justify-between space-y-4">
+        <div>
+          <div class="flex justify-between items-center font-mono text-xs text-[var(--text-dim)] pb-2 border-b border-[var(--border-line)]">
+            <span class="font-bold text-[var(--text-main)]">[ PSYCHOLOGICAL HORROR ]</span>
+            <span>PLAYCANVAS / YUKA.JS</span>
+          </div>
+          <h3 class="nier-title text-xl mt-3 text-[var(--text-main)]">
+            “I DON’T WANNA BE ITIK SALAI”
+          </h3>
+          <p class="text-xs sm:text-sm font-sans text-[var(--text-secondary)] mt-2 leading-relaxed">
+            Engineered a psychological horror-chaser web game focusing on high-tension NPC pursuit mechanics. Integrated Yuka.js for autonomous NPC navigation and utilized raycasting line detection to simulate accurate enemy line-of-sight and player detection.
+          </p>
+        </div>
+
+        <div class="space-y-3">
+          <div class="pt-3 border-t border-[var(--border-line)] flex flex-wrap gap-1.5 font-mono text-[11px]">
+            <span class="px-2.5 py-1 bg-[var(--bg-surface)] border border-[var(--border-line)]">PlayCanvas 3D</span>
+            <span class="px-2.5 py-1 bg-[var(--bg-surface)] border border-[var(--border-line)]">Yuka.js AI</span>
+            <span class="px-2.5 py-1 bg-[var(--bg-surface)] border border-[var(--border-line)]">JavaScript</span>
+            <span class="px-2.5 py-1 bg-[var(--bg-surface)] border border-[var(--border-line)]">Raycasting</span>
+          </div>
+
+          <a href="https://playcanv.as/b/d35503c6" target="_blank" class="nier-menu-btn active text-xs py-2 w-full justify-center">
+            <span class="nier-sq"></span>
+            <span>Launch Game in Browser (PlayCanvas) →</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Featured Game 4: Shingeki no Alien & VR Food Truck -->
+      <div class="nier-card p-6 sm:p-8 flex flex-col justify-between space-y-4">
+        <div>
+          <div class="flex justify-between items-center font-mono text-xs text-[var(--text-dim)] pb-2 border-b border-[var(--border-line)]">
+            <span class="font-bold text-[var(--text-main)]">[ 3D SURVIVAL SHOOTER ]</span>
+            <span>GDEVELOP / GODOT</span>
+          </div>
+          <h3 class="nier-title text-xl mt-3 text-[var(--text-main)]">
+            SHINGEKI NO ALIEN & VR FOOD TRUCK
+          </h3>
+          <p class="text-xs sm:text-sm font-sans text-[var(--text-secondary)] mt-2 leading-relaxed">
+            Built <em>Shingeki no Alien</em>, a fast-paced 3D survival shooter with AI navigation meshes, and collaborated on <em>Multiplayer VR Food Truck Simulation</em> in Godot with custom 3D asset modeling in Blockbench & Blender.
+          </p>
+        </div>
+
+        <div class="space-y-3">
+          <div class="pt-3 border-t border-[var(--border-line)] flex flex-wrap gap-1.5 font-mono text-[11px]">
+            <span class="px-2.5 py-1 bg-[var(--bg-surface)] border border-[var(--border-line)]">GDevelop 3D</span>
+            <span class="px-2.5 py-1 bg-[var(--bg-surface)] border border-[var(--border-line)]">Godot VR</span>
+            <span class="px-2.5 py-1 bg-[var(--bg-surface)] border border-[var(--border-line)]">Blockbench</span>
+            <span class="px-2.5 py-1 bg-[var(--bg-surface)] border border-[var(--border-line)]">Blender</span>
+          </div>
+
+          <div class="flex flex-wrap gap-2">
+            <a href="https://gd.games/iraila/shingeki-no-alien-" target="_blank" class="nier-menu-btn active text-xs py-2 flex-1 justify-center">
+              <span class="nier-sq"></span>
+              <span>Play Shingeki no Alien →</span>
+            </a>
+            <button onclick="openMediaModal('video', 'Hardware-Software-Projects/VR Food Truck Simulation [Godot]/Unusual Hotdog Truck_ Alien Shift _ Game Development _ Group 3.mp4', 'VR Food Truck Simulation', 'Collaborative VR game development focusing on 3D modeling and diegetic UI in Godot.')" class="nier-menu-btn text-xs py-2 flex-1 justify-center">
+              <span class="nier-sq"></span>
+              <span>VR Food Truck Video ▶</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- SECTION 04: DESIGN PORTFOLIO & CANVA PROJECTS -->
+  <!-- ========================================================================= -->
+  <section id="designs" class="py-14 sm:py-20 px-4 sm:px-8 max-w-7xl mx-auto relative z-10 border-t border-[var(--border-line)]">
+    
+    <div class="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
+      <div>
+        <div class="flex items-center gap-3 font-mono text-xs text-[var(--text-dim)] uppercase tracking-widest mb-1">
+          <span class="w-2.5 h-2.5 bg-[var(--text-main)] inline-block"></span>
+          <span>SECTION 04 // GRAPHIC DESIGN, FIGMA & CANVA EXPERTISE</span>
+        </div>
+        <h2 class="nier-title text-3xl sm:text-5xl">
+          DESIGNS & CANVA
+        </h2>
+        <p class="font-mono text-xs sm:text-sm text-[var(--text-secondary)] mt-1">
+          Interactive Figma prototypes, Canva certified design kits, brochures, and branding decks.
+        </p>
+      </div>
+
+      <a href="https://canva.link/3h9efrqll820h0u" target="_blank" class="nier-menu-btn active text-xs py-2 px-4 self-start md:self-auto">
+        <span class="nier-sq"></span>
+        <span>Open Canva Master Portfolio Link ↗</span>
+      </a>
+    </div>
+
+    <!-- Design Cards Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <!-- Design 1: Food Arcade Dining Table App (Figma Prototype) -->
+      <div class="nier-card overflow-hidden flex flex-col justify-between group">
+        <div class="aspect-[4/3] relative overflow-hidden bg-black/40 border-b border-[var(--border-line)] cursor-pointer" onclick="openMediaModal('video', 'Designs-Portfolio/Figma Section/Food Arcade Dining Table Prototype/arked Meranti TableReserved.mp4', 'Food Arcade Dining Table — Figma Prototype', 'Interactive UI prototype walkthrough for table reservations and food ordering.')">
+          <div class="w-full h-full bg-[var(--bg-surface)] flex flex-col items-center justify-center p-6 text-center">
+            <span class="font-mono text-3xl mb-1">🍱</span>
+            <span class="nier-title text-sm text-[var(--text-main)]">FOOD ARCADE RESERVATION APP</span>
+            <span class="font-mono text-[10px] text-yorha-hazard mt-1 font-bold">FIGMA UI/UX PROTOTYPE</span>
+          </div>
+          <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <span class="px-2.5 py-1 bg-black/80 text-[11px] font-mono text-white border border-white/20">
+              ▶ Watch Prototype Walkthrough
+            </span>
+          </div>
+          <div class="absolute top-2 left-2">
+            <span class="px-2 py-0.5 bg-black/80 text-[10px] font-mono text-white border border-white/20">
+              FIGMA / UX RESEARCH
+            </span>
+          </div>
+        </div>
+
+        <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+          <div>
+            <h4 class="nier-title text-base text-[var(--text-main)]">
+              FOOD ARCADE DINING TABLE APP
+            </h4>
+            <p class="text-xs font-sans text-[var(--text-secondary)] mt-2 leading-relaxed">
+              Developed an interactive UI prototype in Figma and conducted comprehensive user testing sessions, providing task-based instructions to observe user flow, gather feedback, and iterate on mechanics.
+            </p>
+          </div>
+
+          <div class="space-y-2 pt-2 border-t border-[var(--border-line)]">
+            <a href="https://www.figma.com/proto/Q1V71P9fgFQn5mjX3VUECO/arked-Meranti-TableReserved?node-id=309-28&starting-point-node-id=103%3A4&t=RJAYZETN1KfvvOhF-1" target="_blank" class="nier-menu-btn active text-xs py-1.5 w-full justify-center">
+              <span class="nier-sq"></span>
+              <span>Open Figma Prototype Live ↗</span>
+            </a>
+            <button onclick="openMediaModal('video', 'Designs-Portfolio/Figma Section/Food Arcade Dining Table Prototype/arked Meranti TableReserved.mp4', 'Food Arcade Prototype Walkthrough', 'Walkthrough video of the interactive Figma prototype.')" class="nier-menu-btn text-xs py-1.5 w-full justify-center">
+              <span class="nier-sq"></span>
+              <span>Watch Prototype Video ▶</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Design 2: Website Design (Canva Matchacode) -->
+      <div class="nier-card overflow-hidden flex flex-col justify-between group">
+        <div class="aspect-[4/3] relative overflow-hidden bg-black/40 border-b border-[var(--border-line)] cursor-pointer" onclick="openMediaModal('image', 'Designs-Portfolio/Canva Section/Website Design/Cua0pUQRm.png', 'Canva Website Design — Matchacode', 'Full responsive website layout designed in Canva.')">
+          <img src="Designs-Portfolio/Canva Section/Website Design/Cua0pUQRm.png" alt="Canva Website Design" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+          <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <span class="px-2.5 py-1 bg-black/80 text-[11px] font-mono text-white border border-white/20">
+              🔍 Inspect Website Layout
+            </span>
+          </div>
+          <div class="absolute top-2 left-2">
+            <span class="px-2 py-0.5 bg-black/80 text-[10px] font-mono text-white border border-white/20">
+              CANVA LIVE SITE
+            </span>
+          </div>
+        </div>
+
+        <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+          <div>
+            <h4 class="nier-title text-base text-[var(--text-main)]">
+              CANVA WEBSITE DESIGN
+            </h4>
+            <p class="text-xs font-sans text-[var(--text-secondary)] mt-2 leading-relaxed">
+              Modern aesthetic website layout engineered in Canva featuring clean section hierarchies, typography balance, and published on a live domain.
+            </p>
+          </div>
+
+          <div class="space-y-2 pt-2 border-t border-[var(--border-line)]">
+            <a href="https://matchacode.my.canva.site/website-d6/" target="_blank" class="nier-menu-btn active text-xs py-1.5 w-full justify-center">
+              <span class="nier-sq"></span>
+              <span>Open Live Canva Website ↗</span>
+            </a>
+            <button onclick="openMediaModal('image', 'Designs-Portfolio/Canva Section/Website Design/FWhCNytsA.png', 'Canva Website Design — Second View', 'Alternative section layout for the website.')" class="nier-menu-btn text-xs py-1.5 w-full justify-center">
+              <span class="nier-sq"></span>
+              <span>Inspect Secondary Layout →</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Design 3: Instagram Post & Social Media Kit -->
+      <div class="nier-card overflow-hidden flex flex-col justify-between group">
+        <div class="aspect-[4/3] relative overflow-hidden bg-black/40 border-b border-[var(--border-line)] cursor-pointer" onclick="openMediaModal('image', 'Designs-Portfolio/Canva Section/Instagram Post Design/InstagramPost_D2/1.png', 'Instagram Social Post Design', 'Engaging social media post kit crafted in Canva.')">
+          <img src="Designs-Portfolio/Canva Section/Instagram Post Design/InstagramPost_D2/1.png" alt="Canva Instagram Design" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+          <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <span class="px-2.5 py-1 bg-black/80 text-[11px] font-mono text-white border border-white/20">
+              🔍 Inspect Post Design
+            </span>
+          </div>
+          <div class="absolute top-2 left-2">
+            <span class="px-2 py-0.5 bg-black/80 text-[10px] font-mono text-white border border-white/20">
+              CANVA SOCIAL KIT
+            </span>
+          </div>
+        </div>
+
+        <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+          <div>
+            <h4 class="nier-title text-base text-[var(--text-main)]">
+              INSTAGRAM POST DESIGN
+            </h4>
+            <p class="text-xs font-sans text-[var(--text-secondary)] mt-2 leading-relaxed">
+              High-engagement social media visual assets designed with Canva Pro, utilizing curated color palettes, typography scales, and modular card systems.
+            </p>
+          </div>
+
+          <div class="space-y-2 pt-2 border-t border-[var(--border-line)]">
+            <a href="https://www.canva.com/design/DAHRx1GT4F8/vTi4U37f2gKqWBsxHccJKw/view" target="_blank" class="nier-menu-btn active text-xs py-1.5 w-full justify-center">
+              <span class="nier-sq"></span>
+              <span>Open Canva Post View ↗</span>
+            </a>
+            <button onclick="openMediaModal('image', 'Designs-Portfolio/Canva Section/Instagram Post Design/InstagramPost_D2/2.png', 'Instagram Post — Slide 2', 'Second slide of the social post set.')" class="nier-menu-btn text-xs py-1.5 w-full justify-center">
+              <span class="nier-sq"></span>
+              <span>Inspect Slide 2 →</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Design 4: Presentation Deck Design -->
+      <div class="nier-card overflow-hidden flex flex-col justify-between group">
+        <div class="aspect-[4/3] relative overflow-hidden bg-black/40 border-b border-[var(--border-line)] cursor-pointer" onclick="openMediaModal('image', 'Designs-Portfolio/Canva Section/Presentation Design/Presentation_D1/1.png', 'Canva Presentation Slides', 'Professional pitch and presentation slide deck.')">
+          <img src="Designs-Portfolio/Canva Section/Presentation Design/Presentation_D1/1.png" alt="Canva Presentation Design" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+          <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <span class="px-2.5 py-1 bg-black/80 text-[11px] font-mono text-white border border-white/20">
+              🔍 Inspect Slide Deck
+            </span>
+          </div>
+          <div class="absolute top-2 left-2">
+            <span class="px-2 py-0.5 bg-black/80 text-[10px] font-mono text-white border border-white/20">
+              CANVA SLIDES
+            </span>
+          </div>
+        </div>
+
+        <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+          <div>
+            <h4 class="nier-title text-base text-[var(--text-main)]">
+              PRESENTATION SLIDE DECK
+            </h4>
+            <p class="text-xs font-sans text-[var(--text-secondary)] mt-2 leading-relaxed">
+              Polished presentation design created in Canva for structured data storytelling, executive summaries, and visual project breakdowns.
+            </p>
+          </div>
+
+          <div class="space-y-2 pt-2 border-t border-[var(--border-line)]">
+            <a href="https://www.canva.com/design/DAHRx9ls4Vc/GG4wPgzsVdl3neN4gGmDgQ/view" target="_blank" class="nier-menu-btn active text-xs py-1.5 w-full justify-center">
+              <span class="nier-sq"></span>
+              <span>Open Canva Slides View ↗</span>
+            </a>
+            <button onclick="openMediaModal('image', 'Designs-Portfolio/Canva Section/Presentation Design/Presentation_D1/2.png', 'Presentation Deck — Slide 2', 'Data breakdown slide.')" class="nier-menu-btn text-xs py-1.5 w-full justify-center">
+              <span class="nier-sq"></span>
+              <span>Inspect Slide 2 →</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Design 5: Brochure Design -->
+      <div class="nier-card overflow-hidden flex flex-col justify-between group">
+        <div class="aspect-[4/3] relative overflow-hidden bg-black/40 border-b border-[var(--border-line)] cursor-pointer" onclick="openMediaModal('image', 'Designs-Portfolio/Canva Section/Brochure Design/Brochure_D4.png', 'Canva Brochure Design', 'Tri-fold print brochure design layout.')">
+          <img src="Designs-Portfolio/Canva Section/Brochure Design/Brochure_D4.png" alt="Canva Brochure Design" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+          <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <span class="px-2.5 py-1 bg-black/80 text-[11px] font-mono text-white border border-white/20">
+              🔍 Inspect Brochure
+            </span>
+          </div>
+          <div class="absolute top-2 left-2">
+            <span class="px-2 py-0.5 bg-black/80 text-[10px] font-mono text-white border border-white/20">
+              PRINT & EDITORIAL
+            </span>
+          </div>
+        </div>
+
+        <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+          <div>
+            <h4 class="nier-title text-base text-[var(--text-main)]">
+              BROCHURE DESIGN
+            </h4>
+            <p class="text-xs font-sans text-[var(--text-secondary)] mt-2 leading-relaxed">
+              Tri-fold print publication layout engineered with strict bleed margins, typographic hierarchy, and visual branding assets in Canva.
+            </p>
+          </div>
+
+          <button onclick="openMediaModal('image', 'Designs-Portfolio/Canva Section/Brochure Design/Brochure_D4.png', 'Full Brochure Design', 'Tri-fold brochure layout created in Canva.')" class="nier-menu-btn text-xs py-1.5 w-full justify-center">
+            <span class="nier-sq"></span>
+            <span>Inspect Full-Resolution Brochure 🔍</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Design 6: Business Cards & Identity Suite -->
+      <div class="nier-card overflow-hidden flex flex-col justify-between group">
+        <div class="aspect-[4/3] relative overflow-hidden bg-black/40 border-b border-[var(--border-line)] cursor-pointer" onclick="openMediaModal('image', 'Designs-Portfolio/Canva Section/BusinessCard Design/BusinessCard_D8/1.png', 'Business Card Design', 'Clean modern stationery and business card layout.')">
+          <img src="Designs-Portfolio/Canva Section/BusinessCard Design/BusinessCard_D8/1.png" alt="Business Card Design" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+          <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <span class="px-2.5 py-1 bg-black/80 text-[11px] font-mono text-white border border-white/20">
+              🔍 Inspect Business Card
+            </span>
+          </div>
+          <div class="absolute top-2 left-2">
+            <span class="px-2 py-0.5 bg-black/80 text-[10px] font-mono text-white border border-white/20">
+              STATIONERY
+            </span>
+          </div>
+        </div>
+
+        <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+          <div>
+            <h4 class="nier-title text-base text-[var(--text-main)]">
+              BUSINESS CARD & STATIONERY
+            </h4>
+            <p class="text-xs font-sans text-[var(--text-secondary)] mt-2 leading-relaxed">
+              Custom corporate business card and identity stationery suite featuring minimalist layout balancing, clean font pairings, and print die-lines.
+            </p>
+          </div>
+
+          <div class="flex gap-2">
+            <button onclick="openMediaModal('image', 'Designs-Portfolio/Canva Section/BusinessCard Design/BusinessCard_D8/1.png', 'Business Card — Front', 'Front view of the stationery card design.')" class="nier-menu-btn text-xs py-1.5 flex-1 justify-center">
+              <span class="nier-sq"></span>
+              <span>Front →</span>
+            </button>
+            <button onclick="openMediaModal('image', 'Designs-Portfolio/Canva Section/BusinessCard Design/BusinessCard_D8/2.png', 'Business Card — Back', 'Back view of the stationery card design.')" class="nier-menu-btn text-xs py-1.5 flex-1 justify-center">
+              <span class="nier-sq"></span>
+              <span>Back →</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- SECTION 05: SPECS & TECHNICAL SKILLS -->
+  <!-- ========================================================================= -->
+  <section id="education" class="py-14 sm:py-20 px-4 sm:px-8 max-w-7xl mx-auto relative z-10 border-t border-[var(--border-line)]">
+    
+    <div class="mb-10">
+      <div class="flex items-center gap-3 font-mono text-xs text-[var(--text-dim)] uppercase tracking-widest mb-1">
+        <span class="w-2.5 h-2.5 bg-[var(--text-main)] inline-block"></span>
+        <span>SECTION 05 // SYSTEM SPECIFICATIONS & ACADEMIC DOSSIER</span>
+      </div>
+      <h2 class="nier-title text-3xl sm:text-5xl">
+        SPECS & SKILLS
+      </h2>
+      <p class="font-mono text-xs sm:text-sm text-[var(--text-secondary)] mt-1">
+        Languages, frameworks, engines, hardware tools, and certified technical proficiencies.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      
+      <!-- Box 1: Programming Languages & Shaders -->
+      <div class="nier-card p-6 space-y-4 font-mono text-xs">
+        <h4 class="font-bold text-[var(--text-main)] border-b border-[var(--border-line)] pb-2 flex items-center gap-2">
+          <span>[ 01 ] LANGUAGES & SHADERS</span>
+        </h4>
+        <div class="space-y-2 text-[var(--text-secondary)]">
+          <div class="flex justify-between py-1 border-b border-[var(--border-line)]/40">
+            <span>Python</span> <span class="text-[var(--text-main)] font-bold">Advanced</span>
+          </div>
+          <div class="flex justify-between py-1 border-b border-[var(--border-line)]/40">
+            <span>C# & C++</span> <span class="text-[var(--text-main)] font-bold">Advanced</span>
+          </div>
+          <div class="flex justify-between py-1 border-b border-[var(--border-line)]/40">
+            <span>JavaScript & PHP</span> <span class="text-[var(--text-main)] font-bold">Proficient</span>
+          </div>
+          <div class="flex justify-between py-1 border-b border-[var(--border-line)]/40">
+            <span>Lua</span> <span class="text-[var(--text-main)] font-bold">Game Scripting</span>
+          </div>
+          <div class="flex justify-between py-1">
+            <span>GLSL (Shaders)</span> <span class="text-[var(--text-main)] font-bold">Rendering</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Box 2: Frameworks, Engines & Hardware -->
+      <div class="nier-card p-6 space-y-4 font-mono text-xs">
+        <h4 class="font-bold text-[var(--text-main)] border-b border-[var(--border-line)] pb-2 flex items-center gap-2">
+          <span>[ 02 ] ENGINES & FRAMEWORKS</span>
+        </h4>
+        <div class="space-y-2 text-[var(--text-secondary)]">
+          <div class="flex justify-between py-1 border-b border-[var(--border-line)]/40">
+            <span>Unity & Godot</span> <span class="text-[var(--text-main)] font-bold">VR & 3D</span>
+          </div>
+          <div class="flex justify-between py-1 border-b border-[var(--border-line)]/40">
+            <span>Defold & PlayCanvas</span> <span class="text-[var(--text-main)] font-bold">2D / WebGL</span>
+          </div>
+          <div class="flex justify-between py-1 border-b border-[var(--border-line)]/40">
+            <span>Django & Laravel</span> <span class="text-[var(--text-main)] font-bold">Full-Stack</span>
+          </div>
+          <div class="flex justify-between py-1 border-b border-[var(--border-line)]/40">
+            <span>OpenGL & WebGL</span> <span class="text-[var(--text-main)] font-bold">Graphics</span>
+          </div>
+          <div class="flex justify-between py-1">
+            <span>Raspberry Pi & GPIO</span> <span class="text-[var(--text-main)] font-bold">Embedded</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Box 3: Certifications & Design -->
+      <div class="nier-card p-6 space-y-4 font-mono text-xs">
+        <h4 class="font-bold text-yorha-hazard border-b border-[var(--border-line)] pb-2 flex items-center gap-2">
+          <span>[ 03 ] CERTIFICATIONS</span>
+        </h4>
+        <div class="space-y-3 font-sans text-xs text-[var(--text-secondary)]">
+          <div class="p-2.5 bg-[var(--bg-surface)] border border-[var(--border-line)]">
+            <span class="font-mono font-bold text-[var(--text-main)] block">ROBOTIC DESIGN & DEV</span>
+            <span class="text-[11px] block text-[var(--text-dim)]">Raspberry Pi Microprocessor | KPT (Aug 2026)</span>
+            <p class="text-[11px] mt-1">AI robotics design, electrical circuitry, microcontrollers, and robot motion control.</p>
+          </div>
+          <div class="p-2.5 bg-[var(--bg-surface)] border border-[var(--border-line)]">
+            <span class="font-mono font-bold text-[var(--text-main)] block">GRAPHIC DESIGN ESSENTIALS</span>
+            <span class="text-[11px] block text-[var(--text-dim)]">Canva Design School | The Canva Team (Sept 2026)</span>
+            <p class="text-[11px] mt-1">Visual identity design, layout balance, and brand asset production.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- SECTION 06: TRANSMISSION / CONTACT -->
+  <!-- ========================================================================= -->
+  <section id="contact" class="py-14 sm:py-20 px-4 sm:px-8 max-w-7xl mx-auto relative z-10 border-t border-[var(--border-line)]">
+    
+    <div class="mb-10">
+      <div class="flex items-center gap-3 font-mono text-xs text-[var(--text-dim)] uppercase tracking-widest mb-1">
+        <span class="w-2.5 h-2.5 bg-[var(--text-main)] inline-block"></span>
+        <span>SECTION 06 // TRANSMISSION BEACON</span>
+      </div>
+      <h2 class="nier-title text-3xl sm:text-5xl">
+        TRANSMIT INQUIRY
+      </h2>
+      <p class="font-mono text-xs sm:text-sm text-[var(--text-secondary)] mt-1">
+        Relay project opportunities, software roles, or design commissions.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      
+      <!-- Direct Transmission Details -->
+      <div class="lg:col-span-5 nier-card p-6 sm:p-8 space-y-5 font-mono text-xs">
+        <h3 class="font-bold text-base text-[var(--text-main)] border-b border-[var(--border-line)] pb-2">
+          [ DIRECT OPERATOR CONTACT ]
+        </h3>
+
+        <div class="space-y-3">
+          <div class="p-3 bg-[var(--bg-surface)] border border-[var(--border-line)]">
+            <span class="text-[10px] text-[var(--text-dim)] uppercase block">EMAIL ADDRESS:</span>
+            <div class="flex items-center justify-between gap-2 mt-1">
+              <span class="font-bold text-sm text-[var(--text-main)]">kairairaila@gmail.com</span>
+              <button onclick="copyText('kairairaila@gmail.com', 'Email copied')" class="nier-menu-btn py-1 px-2.5 text-[10px]">[ COPY ]</button>
+            </div>
+          </div>
+
+          <div class="p-3 bg-[var(--bg-surface)] border border-[var(--border-line)]">
+            <span class="text-[10px] text-[var(--text-dim)] uppercase block">PHONE CONTACT:</span>
+            <div class="flex items-center justify-between gap-2 mt-1">
+              <span class="font-bold text-sm text-[var(--text-main)]">(+60) 11-11979410</span>
+              <button onclick="copyText('(+60) 11-11979410', 'Phone number copied')" class="nier-menu-btn py-1 px-2.5 text-[10px]">[ COPY ]</button>
+            </div>
+          </div>
+
+          <div class="p-3 bg-[var(--bg-surface)] border border-[var(--border-line)]">
+            <span class="text-[10px] text-[var(--text-dim)] uppercase block">LINKEDIN PROFILE:</span>
+            <div class="flex items-center justify-between gap-2 mt-1">
+              <span class="font-bold text-xs text-[var(--text-main)] truncate">in/fakhirah-shakila-2b2040127</span>
+              <a href="https://linkedin.com/in/fakhirah-shakila-2b2040127" target="_blank" rel="noopener noreferrer" class="nier-menu-btn py-1 px-2.5 text-[10px]">[ OPEN ]</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-2 text-[11px] text-[var(--text-dim)] font-sans">
+          Location: Johor Bahru, Johor, Malaysia.<br />
+          Availability: Open to graduate software engineering roles, XR/game development, and freelance design work.
+        </div>
+      </div>
+
+      <!-- Transmission Form -->
+      <div class="lg:col-span-7 nier-card p-6 sm:p-8">
+        <form onsubmit="handleContact(event)" class="space-y-4 font-mono text-xs">
+          
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-[var(--text-secondary)] uppercase mb-1">[ SENDER NAME ]</label>
+              <input type="text" id="c-name" required placeholder="Jane Doe" class="w-full px-3 py-2 bg-[var(--bg-surface)] border border-[var(--border-line)] text-[var(--text-main)] focus:outline-none focus:border-[var(--border-dark)]" />
+            </div>
+            <div>
+              <label class="block text-[var(--text-secondary)] uppercase mb-1">[ SENDER EMAIL ]</label>
+              <input type="email" id="c-email" required placeholder="jane@example.com" class="w-full px-3 py-2 bg-[var(--bg-surface)] border border-[var(--border-line)] text-[var(--text-main)] focus:outline-none focus:border-[var(--border-dark)]" />
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-[var(--text-secondary)] uppercase mb-1">[ INQUIRY CATEGORY ]</label>
+            <select id="c-category" class="w-full px-3 py-2 bg-[var(--bg-surface)] border border-[var(--border-line)] text-[var(--text-main)] focus:outline-none focus:border-[var(--border-dark)]">
+              <option>Software Engineering / Embedded System Opportunity</option>
+              <option>VR / Game Development Project</option>
+              <option>Graphic Design / Canva Project Commission</option>
+              <option>General Academic / Professional Inquiry</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-[var(--text-secondary)] uppercase mb-1">[ MESSAGE PAYLOAD ]</label>
+            <textarea id="c-msg" rows="4" required placeholder="Specify your message, project brief, or role specifications..." class="w-full px-3 py-2 bg-[var(--bg-surface)] border border-[var(--border-line)] text-[var(--text-main)] focus:outline-none focus:border-[var(--border-dark)]"></textarea>
+          </div>
+
+          <button type="submit" id="c-btn" class="w-full nier-menu-btn active py-3 text-center justify-center">
+            <span class="nier-sq"></span>
+            <span>TRANSMIT PACKET →</span>
+          </button>
+        </form>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- BOTTOM PROMPT BAR (Matched to image.png) -->
+  <!-- ========================================================================= -->
+  <div class="nier-prompt-bar max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 my-4">
+    <div class="flex items-center gap-2">
+      <span class="text-base leading-none font-bold text-[var(--text-main)]">▌</span>
+      <span id="prompt-desc">Adjust camera settings. Select portfolio section to review candidate dossier.</span>
+    </div>
+    <div class="flex items-center gap-4 text-xs">
+      <span>🎮 Select</span>
+      <span>🅰 Confirm</span>
+      <span>🅱 Back</span>
+      <span>■</span>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- BOTTOM YORHA PATTERN BORDER -->
+  <!-- ========================================================================= -->
+  <div class="yorha-border-bottom z-40 relative"></div>
+
+  <!-- ========================================================================= -->
+  <!-- FOOTER -->
+  <!-- ========================================================================= -->
+  <footer class="py-6 px-4 text-center font-mono text-xs text-[var(--text-dim)]">
+    <div>FAKHIRAH SHAKILA BINTI KHAIRUL ARIFFIN © 2026 // UNIVERSITI TEKNOLOGI MALAYSIA</div>
+    <div class="mt-1 text-[10px]">人類に栄光あれ [GLORY TO MANKIND]</div>
+  </footer>
+
+  <!-- ========================================================================= -->
+  <!-- YORHA MEDIA INSPECTION MODAL (Supports Images & Native Videos) -->
+  <!-- ========================================================================= -->
+  <div id="media-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 sm:p-6 bg-black/85 backdrop-blur-md" onclick="closeMediaModal(event)">
+    <div class="relative w-full max-w-4xl nier-card border-2 border-[var(--border-dark)] bg-[var(--bg-main)] shadow-2xl flex flex-col overflow-hidden max-h-[92vh]" onclick="event.stopPropagation()">
+      
+      <!-- Modal Header -->
+      <div class="px-5 py-3 bg-[var(--bg-surface)] border-b border-[var(--border-line)] flex items-center justify-between font-mono text-xs">
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 bg-yorha-hazard inline-block"></span>
+          <span id="modal-title" class="font-bold text-[var(--text-main)]">MEDIA INSPECTION</span>
+        </div>
+        <button onclick="closeMediaModalDirect()" class="nier-menu-btn py-1 px-3 text-[11px]">[ ESC / CLOSE ]</button>
+      </div>
+
+      <!-- Media Viewport -->
+      <div class="relative flex-1 bg-black flex items-center justify-center min-h-[300px] max-h-[65vh] p-2 overflow-hidden">
+        <img id="modal-img" src="" alt="Dossier View" class="hidden max-w-full max-h-full object-contain" />
+        <video id="modal-video" controls class="hidden max-w-full max-h-full"></video>
+      </div>
+
+      <!-- Modal Footer Caption -->
+      <div class="p-4 bg-[var(--bg-surface)] border-t border-[var(--border-line)] font-sans text-xs text-[var(--text-secondary)] flex justify-between items-center">
+        <p id="modal-caption" class="leading-relaxed"></p>
+        <button onclick="closeMediaModalDirect()" class="nier-menu-btn py-1.5 px-4 text-xs font-mono ml-4 shrink-0">
+          <span class="nier-sq"></span>
+          <span>Close</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- CLIENT JAVASCRIPT -->
+  <!-- ========================================================================= -->
+  <script>
+    // Theme toggle (Sand as in image.png vs Bunker Dark)
+    function toggleTheme() {
+      const root = document.documentElement;
+      const btnText = document.getElementById('theme-btn-text');
+      if (root.classList.contains('theme-sand')) {
+        root.classList.remove('theme-sand');
+        root.classList.add('theme-bunker');
+        btnText.textContent = 'SAND [LIGHT]';
+        localStorage.setItem('nier-theme', 'bunker');
+        showToast('Bunker Dark Mode activated.');
+      } else {
+        root.classList.remove('theme-bunker');
+        root.classList.add('theme-sand');
+        btnText.textContent = 'BUNKER [DARK]';
+        localStorage.setItem('nier-theme', 'sand');
+        showToast('YoRHa Sand Menu Mode activated.');
+      }
+    }
+
+    (function initTheme() {
+      const saved = localStorage.getItem('nier-theme');
+      const root = document.documentElement;
+      const btnText = document.getElementById('theme-btn-text');
+      if (saved === 'bunker') {
+        root.classList.remove('theme-sand');
+        root.classList.add('theme-bunker');
+        if (btnText) btnText.textContent = 'SAND [LIGHT]';
+      }
+    })();
+
+    // Menu active state switcher
+    function activateMenu(btn) {
+      document.querySelectorAll('.nier-menu-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+
+    // Mobile menu toggle
+    const mBtn = document.getElementById('mobile-toggle-btn');
+    const mDrawer = document.getElementById('mobile-drawer');
+    if (mBtn && mDrawer) {
+      mBtn.addEventListener('click', () => {
+        mDrawer.classList.toggle('hidden');
+      });
+      mDrawer.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => mDrawer.classList.add('hidden'));
+      });
+    }
+
+    // Toast notification
+    function showToast(msg) {
+      const container = document.getElementById('toast-container');
+      const t = document.createElement('div');
+      t.className = 'border border-[var(--border-dark)] bg-[var(--bg-menu-active)] text-[var(--text-active)] px-3.5 py-2 shadow-lg';
+      t.textContent = `[SYSTEM] ${msg}`;
+      container.appendChild(t);
+      setTimeout(() => {
+        t.remove();
+      }, 2800);
+    }
+
+    function copyText(text, label) {
+      navigator.clipboard.writeText(text).then(() => {
+        showToast(`${label}`);
+      });
+    }
+
+    function downloadResume() {
+      showToast('Opening resume dossier (NEW-RESUME.pdf)...');
+      window.open('NEW-RESUME.pdf', '_blank');
+    }
+
+    // Modal Media Inspector (Images and Videos)
+    const modalEl = document.getElementById('media-modal');
+    const modalImg = document.getElementById('modal-img');
+    const modalVideo = document.getElementById('modal-video');
+    const modalTitle = document.getElementById('modal-title');
+    const modalCaption = document.getElementById('modal-caption');
+
+    function openMediaModal(type, src, title, caption) {
+      modalTitle.textContent = title;
+      modalCaption.textContent = caption;
+
+      if (type === 'video') {
+        modalImg.classList.add('hidden');
+        modalVideo.classList.remove('hidden');
+        modalVideo.src = src;
+        modalVideo.play().catch(() => {});
+      } else {
+        modalVideo.pause();
+        modalVideo.classList.add('hidden');
+        modalImg.classList.remove('hidden');
+        modalImg.src = src;
+      }
+
+      modalEl.classList.remove('hidden');
+      document.body.classList.add('overflow-hidden');
+    }
+
+    function closeMediaModalDirect() {
+      modalVideo.pause();
+      modalVideo.src = '';
+      modalImg.src = '';
+      modalEl.classList.add('hidden');
+      document.body.classList.remove('overflow-hidden');
+    }
+
+    function closeMediaModal(e) {
+      if (e.target === modalEl) {
+        closeMediaModalDirect();
+      }
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !modalEl.classList.contains('hidden')) {
+        closeMediaModalDirect();
+      }
+    });
+
+    function handleContact(e) {
+      e.preventDefault();
+      const btn = document.getElementById('c-btn');
+      const original = btn.innerHTML;
+      btn.innerHTML = '<span>[ TRANSMITTING PACKET... ]</span>';
+      setTimeout(() => {
+        showToast('Transmission received! Thank you, Fakhirah will reply soon.');
+        document.querySelector('form').reset();
+        btn.innerHTML = original;
+      }, 1000);
+    }
+  </script>
+</body>
+</html>
