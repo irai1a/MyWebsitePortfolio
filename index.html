@@ -140,14 +140,14 @@
       position: relative;
       display: inline-flex;
       align-items: center;
-      gap: 0.6rem;
+      gap: 0.5rem;
       background-color: var(--bg-menu-item);
       color: var(--text-main);
       font-family: 'Plus Jakarta Sans', sans-serif;
       font-weight: 600;
-      font-size: 0.82rem;
-      letter-spacing: 0.06em;
-      padding: 0.5rem 1.15rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+      padding: 0.45rem 1rem;
       border: 1px solid transparent;
       transition: all 0.12s ease;
       cursor: pointer;
@@ -180,14 +180,32 @@
     .nier-menu-btn.active::before {
       content: '◆';
       position: absolute;
-      left: -16px;
-      font-size: 9px;
+      left: -14px;
+      font-size: 8px;
       color: var(--cursor-color);
       animation: cursor-pulse 1s infinite alternate;
     }
     @keyframes cursor-pulse {
       0% { opacity: 0.6; transform: translateX(0); }
       100% { opacity: 1; transform: translateX(2px); }
+    }
+
+    /* In-Card Media Arrow Buttons */
+    .nier-card-arrow {
+      background: rgba(45, 42, 33, 0.85);
+      color: #dad5bf;
+      border: 1px solid var(--border-line);
+      padding: 4px 8px;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 11px;
+      transition: all 0.15s ease;
+      cursor: pointer;
+      user-select: none;
+    }
+    .nier-card-arrow:hover {
+      background: var(--accent-hazard);
+      color: #ffffff;
+      border-color: var(--accent-hazard);
     }
 
     /* NieR Card Frame */
@@ -212,6 +230,53 @@
       font-family: 'Share Tech Mono', monospace;
       font-size: 0.8rem;
       color: var(--text-secondary);
+    }
+
+    /* Strict object-contain for media - DO NOT CROP */
+    .media-contain {
+      object-fit: contain !important;
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      margin: auto;
+      display: block;
+    }
+
+    /* Native Fullscreen Viewport Rules (Strict zero-cropping) */
+    #modal-media-viewport:fullscreen,
+    #modal-media-viewport:-webkit-full-screen,
+    #modal-media-viewport:-moz-full-screen,
+    #modal-media-viewport:-ms-fullscreen {
+      width: 100vw !important;
+      height: 100vh !important;
+      max-height: 100vh !important;
+      max-width: 100vw !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      background-color: #050505 !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+    }
+
+    #modal-media-viewport:fullscreen img,
+    #modal-media-viewport:-webkit-full-screen img,
+    #modal-media-viewport:-moz-full-screen img,
+    #modal-media-viewport:fullscreen video,
+    #modal-media-viewport:-webkit-full-screen video,
+    #modal-media-viewport:-moz-full-screen video {
+      max-height: 93vh !important;
+      max-width: 95vw !important;
+      width: auto !important;
+      height: auto !important;
+      object-fit: contain !important;
+    }
+
+    #modal-media-viewport:fullscreen .modal-fs-only,
+    #modal-media-viewport:-webkit-full-screen .modal-fs-only,
+    #modal-media-viewport:-moz-full-screen .modal-fs-only {
+      display: flex !important;
     }
 
     /* Custom Scrollbar */
@@ -270,13 +335,13 @@
           <span class="nier-sq"></span>
           <span>Profile</span>
         </a>
-        <a href="#hardware-software" class="nier-menu-btn" onclick="activateMenu(this)">
-          <span class="nier-sq"></span>
-          <span>Hardware / Software</span>
-        </a>
         <a href="#games-vr" class="nier-menu-btn" onclick="activateMenu(this)">
           <span class="nier-sq"></span>
           <span>Games & VR</span>
+        </a>
+        <a href="#hardware-software" class="nier-menu-btn" onclick="activateMenu(this)">
+          <span class="nier-sq"></span>
+          <span>Hardware / Software</span>
         </a>
         <a href="#designs" class="nier-menu-btn" onclick="activateMenu(this)">
           <span class="nier-sq"></span>
@@ -293,7 +358,7 @@
       </nav>
 
       <!-- Right: Resume Requisition & Theme Mode Switcher -->
-      <div class="flex items-center gap-2.5">
+      <div class="flex items-center gap-2">
         <button onclick="downloadResume()" class="nier-menu-btn text-xs py-1.5 px-3 border border-[var(--border-line)]" title="Download Official Resume PDF">
           <span class="nier-sq"></span>
           <span>Resume [PDF]</span>
@@ -317,8 +382,8 @@
     <!-- Mobile Drawer -->
     <div id="mobile-drawer" class="lg:hidden hidden mt-3 border-t border-[var(--border-line)] pt-3 pb-2 flex flex-col gap-1.5 font-mono text-xs">
       <a href="#about" class="nier-menu-btn py-2">[ ■ PROFILE // INTEL ]</a>
+      <a href="#games-vr" class="nier-menu-btn py-2">[ ■ GAMES & VR (WHACK-A-WORD-HAM / NIER) ]</a>
       <a href="#hardware-software" class="nier-menu-btn py-2">[ ■ HARDWARE & SOFTWARE PROJECTS ]</a>
-      <a href="#games-vr" class="nier-menu-btn py-2">[ ■ GAMES & VR (MAPPY X NIER) ]</a>
       <a href="#designs" class="nier-menu-btn py-2">[ ■ DESIGN PORTFOLIO & CANVA ]</a>
       <a href="#education" class="nier-menu-btn py-2">[ ■ EDUCATION & CERTIFICATIONS ]</a>
       <a href="#contact" class="nier-menu-btn py-2">[ ■ CONTACT & TRANSMISSION ]</a>
@@ -373,7 +438,7 @@
             My engineering expertise bridges <strong>embedded hardware-software systems (Raspberry Pi, IoT, Python, Django)</strong>, <strong>game and VR engineering (Unity, Godot, Defold, OpenXR, Convai AI SDK)</strong>, and <strong>high-end graphic design (Canva Design School Certified, Figma UI/UX prototyping, and 3D Blender modelling)</strong>.
           </p>
           <p class="font-mono text-xs text-[var(--text-main)] border-l-2 border-[var(--border-dark)] pl-3">
-            Highlight: Programmed <strong class="text-yorha-hazard">MAPPY X NIER</strong>, an authentic 2D action-platformer fanmade crossover combining retro arcade gameplay with the visual aesthetic and custom 2B animation loops of <em>NieR: Automata</em>.
+            Highlight: Creator of <strong class="text-yorha-hazard">WHACK-A-WORD-HAM</strong> published mobile game on Google Play Store, and <strong class="text-yorha-hazard">MAPPY X NIER</strong>, an authentic 2D action-platformer fanmade crossover combining arcade mechanics with the visual aesthetic of <em>NieR: Automata</em>.
           </p>
         </div>
 
@@ -439,211 +504,103 @@
   </section>
 
   <!-- ========================================================================= -->
-  <!-- SECTION 02: HARDWARE & SOFTWARE PROJECTS -->
-  <!-- ========================================================================= -->
-  <section id="hardware-software" class="py-14 sm:py-20 px-4 sm:px-8 max-w-7xl mx-auto relative z-10 border-t border-[var(--border-line)]">
-    
-    <div class="mb-10">
-      <div class="flex items-center gap-3 font-mono text-xs text-[var(--text-dim)] uppercase tracking-widest mb-1">
-        <span class="w-2.5 h-2.5 bg-[var(--text-main)] inline-block"></span>
-        <span>SECTION 02 // EMBEDDED SYSTEMS & SOFTWARE ENGINEERING</span>
-      </div>
-      <h2 class="nier-title text-3xl sm:text-5xl">
-        HARDWARE & SOFTWARE
-      </h2>
-      <p class="font-mono text-xs sm:text-sm text-[var(--text-secondary)] mt-1">
-        Raspberry Pi embedded automation, IoT REST APIs, robotics, and full-stack software applications.
-      </p>
-    </div>
-
-    <!-- Grid of Real Resume Projects -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-      <!-- Project 1: MBPG Smart Tender Box System -->
-      <div class="nier-card overflow-hidden flex flex-col justify-between group">
-        <!-- Thumbnail -->
-        <div class="aspect-video relative overflow-hidden bg-black/40 border-b border-[var(--border-line)] cursor-pointer" onclick="openMediaModal('image', 'Hardware-Software-Projects/MBPG Smart Tender Box System/tenderA.jpg', 'MBPG SMART TENDER BOX SYSTEM', 'Raspberry Pi-based Tender Box automation system using Python, Django, Flask, and GPIO. Integrated solenoid physical security locks, sensors, cameras, and web-to-hardware REST APIs.')">
-          <img src="Hardware-Software-Projects/MBPG Smart Tender Box System/tenderA.jpg" alt="MBPG Smart Tender Box System" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-          <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-            <span class="px-2.5 py-1 bg-black/80 text-[11px] font-mono text-white border border-white/20">
-              🔍 Click to Inspect Hardware
-            </span>
-          </div>
-          <div class="absolute top-2 left-2">
-            <span class="px-2 py-0.5 bg-black/80 text-[10px] font-mono text-white border border-white/20">
-              RASPBERRY PI / IOT
-            </span>
-          </div>
-        </div>
-
-        <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
-          <div>
-            <div class="flex justify-between items-center font-mono text-[11px] text-[var(--text-dim)] pb-1.5 border-b border-[var(--border-line)]">
-              <span class="font-bold text-[var(--text-main)]">[ EMBEDDED IOT ]</span>
-              <span>AR MECHATRONICS PLT</span>
-            </div>
-            <h3 class="nier-title text-base mt-2.5 text-[var(--text-main)]">
-              MBPG SMART TENDER BOX SYSTEM
-            </h3>
-            <p class="text-xs font-sans text-[var(--text-secondary)] mt-2 leading-relaxed">
-              Programmed and optimized Raspberry Pi control scripts using Python to automate physical security locks via solenoid relays. Integrated physical IoT devices with a Django backend and developed custom REST APIs to process web-hardware requests.
-            </p>
-          </div>
-
-          <div class="space-y-3">
-            <div class="pt-2 border-t border-[var(--border-line)] flex flex-wrap gap-1 font-mono text-[10px]">
-              <span class="px-2 py-0.5 bg-[var(--bg-surface)] border border-[var(--border-line)]">Python</span>
-              <span class="px-2 py-0.5 bg-[var(--bg-surface)] border border-[var(--border-line)]">Raspberry Pi</span>
-              <span class="px-2 py-0.5 bg-[var(--bg-surface)] border border-[var(--border-line)]">GPIO</span>
-              <span class="px-2 py-0.5 bg-[var(--bg-surface)] border border-[var(--border-line)]">Django REST</span>
-            </div>
-
-            <div class="flex gap-2">
-              <button onclick="openMediaModal('image', 'Hardware-Software-Projects/MBPG Smart Tender Box System/SystemArchiIntern-Page-2.drawio.png', 'MBPG Tender Box — System Architecture', 'Full hardware-software system architecture diagram showing Raspberry Pi, Django REST API, Solenoid Relays, and Camera integration.')" class="nier-menu-btn text-[11px] py-1.5 flex-1 justify-center">
-                <span class="nier-sq"></span>
-                <span>Architecture →</span>
-              </button>
-              <button onclick="openMediaModal('image', 'Hardware-Software-Projects/MBPG Smart Tender Box System/hSetup.png', 'MBPG Tender Box — Hardware Setup', 'Physical breadboard, relay modules, and Raspberry Pi GPIO pinout wiring setup.')" class="nier-menu-btn text-[11px] py-1.5 flex-1 justify-center">
-                <span class="nier-sq"></span>
-                <span>Setup →</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Project 2: Hosp-Tracker Navigation Robot -->
-      <div class="nier-card overflow-hidden flex flex-col justify-between group">
-        <!-- Thumbnail -->
-        <div class="aspect-video relative overflow-hidden bg-black/40 border-b border-[var(--border-line)] cursor-pointer" onclick="openMediaModal('image', 'Hardware-Software-Projects/Hosp-Tracker Navigation Robot [Robotic Design and Development Technology with Raspberry Pi Microprocessor]/Patient_POV_1.jpg', 'HOSP-TRACKER NAVIGATION ROBOT', 'Autonomous Raspbot navigation system for hospital environments with companion web dashboard.')">
-          <img src="Hardware-Software-Projects/Hosp-Tracker Navigation Robot [Robotic Design and Development Technology with Raspberry Pi Microprocessor]/Patient_POV_1.jpg" alt="Hosp-Tracker Dashboard" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-          <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-            <span class="px-2.5 py-1 bg-black/80 text-[11px] font-mono text-white border border-white/20">
-              🔍 Inspect Robot Dashboard
-            </span>
-          </div>
-          <div class="absolute top-2 left-2">
-            <span class="px-2 py-0.5 bg-black/80 text-[10px] font-mono text-white border border-white/20">
-              ROBOTICS & WEB
-            </span>
-          </div>
-        </div>
-
-        <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
-          <div>
-            <div class="flex justify-between items-center font-mono text-[11px] text-[var(--text-dim)] pb-1.5 border-b border-[var(--border-line)]">
-              <span class="font-bold text-[var(--text-main)]">[ ROBOTICS & WEB ]</span>
-              <span>KPT CERTIFICATE</span>
-            </div>
-            <h3 class="nier-title text-base mt-2.5 text-[var(--text-main)]">
-              HOSP-TRACKER NAVIGATION ROBOT
-            </h3>
-            <p class="text-xs font-sans text-[var(--text-secondary)] mt-2 leading-relaxed">
-              Programmed a Raspbot automated navigation system for hospital environments as part of a Robotic Design Technology certification. Designed and prototyped a companion web dashboard to track and visualize patient journey flows alongside robot operations.
-            </p>
-          </div>
-
-          <div class="space-y-3">
-            <div class="pt-2 border-t border-[var(--border-line)] flex flex-wrap gap-1 font-mono text-[10px]">
-              <span class="px-2 py-0.5 bg-[var(--bg-surface)] border border-[var(--border-line)]">Raspberry Pi</span>
-              <span class="px-2 py-0.5 bg-[var(--bg-surface)] border border-[var(--border-line)]">Python</span>
-              <span class="px-2 py-0.5 bg-[var(--bg-surface)] border border-[var(--border-line)]">Raspbot</span>
-              <span class="px-2 py-0.5 bg-[var(--bg-surface)] border border-[var(--border-line)]">Telemetry</span>
-            </div>
-
-            <div class="flex gap-2">
-              <button onclick="openMediaModal('video', 'Hardware-Software-Projects/Hosp-Tracker Navigation Robot [Robotic Design and Development Technology with Raspberry Pi Microprocessor]/Demo HospTracker.MOV', 'Hosp-Tracker Robot — Video Demonstration', 'Demonstration of the autonomous navigation robot executing pathing and companion dashboard sync.')" class="nier-menu-btn active text-[11px] py-1.5 flex-1 justify-center">
-                <span class="nier-sq"></span>
-                <span>Watch Demo ▶</span>
-              </button>
-              <button onclick="openMediaModal('image', 'Hardware-Software-Projects/Hosp-Tracker Navigation Robot [Robotic Design and Development Technology with Raspberry Pi Microprocessor]/Patient_POV_2.jpg', 'Patient Journey View', 'Companion web telemetry interface for hospital logistics.')" class="nier-menu-btn text-[11px] py-1.5 flex-1 justify-center">
-                <span class="nier-sq"></span>
-                <span>POV 2 →</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Project 3: Whack-a-Word-Ham Published Mobile Game -->
-      <div class="nier-card overflow-hidden flex flex-col justify-between group">
-        <!-- Thumbnail -->
-        <div class="aspect-video relative overflow-hidden bg-black/40 border-b border-[var(--border-line)]">
-          <div class="w-full h-full bg-[var(--bg-surface)] flex flex-col items-center justify-center p-6 text-center">
-            <span class="font-mono text-2xl mb-1">🎮</span>
-            <span class="nier-title text-sm text-[var(--text-main)]">WHACK-A-WORD-HAM</span>
-            <span class="font-mono text-[10px] text-yorha-hazard mt-1 font-bold">GOOGLE PLAY STORE PUBLISHED</span>
-          </div>
-          <div class="absolute top-2 left-2">
-            <span class="px-2 py-0.5 bg-black/80 text-[10px] font-mono text-white border border-white/20">
-              PUBLISHED GAME
-            </span>
-          </div>
-        </div>
-
-        <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
-          <div>
-            <div class="flex justify-between items-center font-mono text-[11px] text-[var(--text-dim)] pb-1.5 border-b border-[var(--border-line)]">
-              <span class="font-bold text-yorha-hazard">[ GOOGLE PLAY ]</span>
-              <span>SELF-PUBLISHED</span>
-            </div>
-            <h3 class="nier-title text-base mt-2.5 text-[var(--text-main)]">
-              WHACK-A-WORD-HAM (MOBILE)
-            </h3>
-            <p class="text-xs font-sans text-[var(--text-secondary)] mt-2 leading-relaxed">
-              Developed and self-published an interactive word puzzle game on the Google Play Store via Google Play Console. Programmed core gameplay loops using Python and Kivy, requiring players to dynamically rearrange letters into meaningful words.
-            </p>
-          </div>
-
-          <div class="space-y-3">
-            <div class="pt-2 border-t border-[var(--border-line)] flex flex-wrap gap-1 font-mono text-[10px]">
-              <span class="px-2 py-0.5 bg-[var(--bg-surface)] border border-[var(--border-line)]">Python</span>
-              <span class="px-2 py-0.5 bg-[var(--bg-surface)] border border-[var(--border-line)]">Kivy</span>
-              <span class="px-2 py-0.5 bg-[var(--bg-surface)] border border-[var(--border-line)]">Google Play Console</span>
-              <span class="px-2 py-0.5 bg-[var(--bg-surface)] border border-[var(--border-line)]">Antigravity IDE</span>
-            </div>
-
-            <button onclick="showToast('Published on Google Play Store via Google Play Console.')" class="nier-menu-btn text-[11px] py-1.5 w-full justify-center">
-              <span class="nier-sq"></span>
-              <span>Google Play Details</span>
-            </button>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-  </section>
-
-  <!-- ========================================================================= -->
-  <!-- SECTION 03: GAMES & VR SIMULATION PROJECTS -->
+  <!-- SECTION 02: GAMES & VR SIMULATION PROJECTS (WHACK-A-WORD-HAM #1 PRIORITY) -->
   <!-- ========================================================================= -->
   <section id="games-vr" class="py-14 sm:py-20 px-4 sm:px-8 max-w-7xl mx-auto relative z-10 border-t border-[var(--border-line)]">
     
     <div class="mb-10">
       <div class="flex items-center gap-3 font-mono text-xs text-[var(--text-dim)] uppercase tracking-widest mb-1">
         <span class="w-2.5 h-2.5 bg-yorha-hazard inline-block"></span>
-        <span>SECTION 03 // VIRTUAL REALITY, SHADERS & GAME SYSTEMS</span>
+        <span>SECTION 02 // GAMES, MOBILE APPS & VIRTUAL REALITY</span>
       </div>
       <h2 class="nier-title text-3xl sm:text-5xl">
         GAMES & VR PROJECTS
       </h2>
       <p class="font-mono text-xs sm:text-sm text-[var(--text-secondary)] mt-1">
-        Playable web games, VR language tutors, and the Mappy x NieR crossover game with live links.
+        Published Google Play games, interactive VR simulations, and custom game development projects.
       </p>
     </div>
 
+    <!-- Games Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 
-      <!-- Featured Game 1: Mappy x Nier (Fanmade Crossover) -->
+      <!-- PRIORITY #1: WHACK-A-WORD-HAM (PUBLISHED MOBILE GAME) WITH ALL IMAGES & ARROWS -->
+      <div class="nier-card p-6 sm:p-8 border-2 border-yorha-hazard flex flex-col justify-between space-y-4 md:col-span-2">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          
+          <!-- Image Carousel Viewport with Left/Right Arrows -->
+          <div class="lg:col-span-6 relative aspect-[16/10] bg-black/60 border border-[var(--border-line)] flex items-center justify-center overflow-hidden">
+            <img id="card-img-whack" src="Hardware-Software-Projects/Google Play Store Published/Whack-A-Word-Ham/IconImage_WhackAWordHam.png" alt="Whack-A-Word-Ham Screenshot" class="media-contain max-h-full max-w-full p-2" />
+            
+            <!-- Left Arrow -->
+            <button onclick="changeCardSlide('whack', -1)" class="nier-card-arrow absolute left-2 top-1/2 -translate-y-1/2" aria-label="Previous Image">
+              ◀ PREV
+            </button>
+            
+            <!-- Right Arrow -->
+            <button onclick="changeCardSlide('whack', 1)" class="nier-card-arrow absolute right-2 top-1/2 -translate-y-1/2" aria-label="Next Image">
+              NEXT ▶
+            </button>
+
+            <!-- Counter Badge -->
+            <div class="absolute bottom-2 right-2 bg-black/80 text-[10px] font-mono text-[#dad5bf] px-2 py-0.5 border border-white/20">
+              <span id="card-counter-whack">1 / 9</span>
+            </div>
+
+            <!-- Inspect Click Overlay -->
+            <button onclick="openProjectGallery('whack')" class="absolute top-2 right-2 bg-black/80 text-[10px] font-mono text-white px-2 py-0.5 border border-white/20 hover:bg-yorha-hazard">
+              🔍 Click to Inspect Full Size
+            </button>
+          </div>
+
+          <!-- Description & Details -->
+          <div class="lg:col-span-6 space-y-4">
+            <div>
+              <div class="flex justify-between items-center font-mono text-xs text-[var(--text-dim)] pb-2 border-b border-[var(--border-line)]">
+                <span class="font-bold text-yorha-hazard">[ PRIORITY 01 // PUBLISHED MOBILE GAME ]</span>
+                <span>GOOGLE PLAY CONSOLE</span>
+              </div>
+              <h3 class="nier-title text-2xl sm:text-3xl mt-2 text-[var(--text-main)]">
+                WHACK-A-WORD-HAM (PUBLISHED)
+              </h3>
+              <p class="text-xs sm:text-sm font-sans text-[var(--text-secondary)] mt-2 leading-relaxed">
+                Developed and self-published an interactive word puzzle mobile game on the <strong>Google Play Store</strong>. Built using Python and the Kivy framework inside Antigravity IDE, requiring players to dynamically rearrange letter sequences into meaningful words under time constraints.
+              </p>
+            </div>
+
+            <div class="space-y-3">
+              <div class="flex flex-wrap gap-1.5 font-mono text-[11px]">
+                <span class="px-2.5 py-1 bg-[var(--bg-menu-active)] text-[var(--text-active)]">Google Play Store</span>
+                <span class="px-2.5 py-1 bg-[var(--bg-surface)] border border-[var(--border-line)]">Python</span>
+                <span class="px-2.5 py-1 bg-[var(--bg-surface)] border border-[var(--border-line)]">Kivy Framework</span>
+                <span class="px-2.5 py-1 bg-[var(--bg-surface)] border border-[var(--border-line)]">Antigravity IDE</span>
+              </div>
+
+              <div class="flex flex-wrap gap-2 pt-2 border-t border-[var(--border-line)]">
+                <button onclick="openProjectGallery('whack')" class="nier-menu-btn active text-xs py-2 flex-1 justify-center">
+                  <span class="nier-sq"></span>
+                  <span>View All 9 Images in Modal 🔍</span>
+                </button>
+                <button onclick="showToast('Self-published on the Google Play Store via Google Play Console.')" class="nier-menu-btn text-xs py-2 flex-1 justify-center">
+                  <span class="nier-sq"></span>
+                  <span>Play Store Details</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Project 2: Mappy x Nier (Fanmade Crossover) -->
       <div class="nier-card p-6 sm:p-8 border-2 border-[var(--border-dark)] flex flex-col justify-between space-y-4">
         <div>
           <div class="flex justify-between items-center font-mono text-xs text-[var(--text-dim)] pb-2 border-b border-[var(--border-line)]">
-            <span class="font-bold text-yorha-hazard">[ FEATURED CROSSOVER ]</span>
+            <span class="font-bold text-yorha-hazard">[ FANMADE CROSSOVER ]</span>
             <span>DEFOLD / LUA</span>
           </div>
           <h3 class="nier-title text-xl sm:text-2xl mt-3 text-[var(--text-main)]">
-            MAPPY X NIER (FANMADE CROSSOVER)
+            MAPPY X NIER (CROSSOVER)
           </h3>
           <p class="text-xs sm:text-sm font-sans text-[var(--text-secondary)] mt-2 leading-relaxed">
             Designed and programmed a 2D retro action-platformer combining the arcade mechanics of Mappy with the thematic aesthetic of <strong>NieR: Automata</strong>. Constructed custom 2B character animation frames, sprite loops, cover art, randomized item-spawning logic, and enemy AI pathfinding algorithms.
@@ -665,13 +622,13 @@
             </a>
             <button onclick="openMediaModal('video', 'Hardware-Software-Projects/Mappy X Nier Defold Game/SECV4213-TASK 1.mp4', 'Mappy x NieR — Gameplay Video', 'Custom 2B character sprite animations, item pickup logic, and enemy pathfinding in action.')" class="nier-menu-btn text-xs py-2 flex-1 justify-center">
               <span class="nier-sq"></span>
-              <span>Watch Gameplay Video ▶</span>
+              <span>Watch Video ▶</span>
             </button>
           </div>
         </div>
       </div>
 
-      <!-- Featured Game 2: HoloLingua (Final Year Project) -->
+      <!-- Project 3: HoloLingua (Final Year Project) with 10 Media Items -->
       <div class="nier-card p-6 sm:p-8 border-2 border-[var(--border-dark)] flex flex-col justify-between space-y-4">
         <div>
           <div class="flex justify-between items-center font-mono text-xs text-[var(--text-dim)] pb-2 border-b border-[var(--border-line)]">
@@ -679,11 +636,24 @@
             <span>UNITY / OPENXR / CONVAI</span>
           </div>
           <h3 class="nier-title text-xl sm:text-2xl mt-3 text-[var(--text-main)]">
-            HOLOLINGUA: AI MULTILINGUAL VR TUTOR
+            HOLOLINGUA: AI VR TUTOR
           </h3>
           <p class="text-xs sm:text-sm font-sans text-[var(--text-secondary)] mt-2 leading-relaxed">
-            Developed a cutting-edge virtual reality language learning application featuring intelligent, AI-driven conversational avatars powered by the Convai SDK. Optimized rendering pipelines and build targets for standalone Meta Quest VR hardware.
+            Developed a virtual reality language learning application featuring intelligent, AI-driven conversational avatars powered by the Convai SDK. Optimized rendering pipelines and build targets for standalone Meta Quest VR hardware.
           </p>
+
+          <!-- HoloLingua Interactive Media Carousel -->
+          <div class="relative aspect-[16/10] bg-black/60 border border-[var(--border-line)] flex items-center justify-center overflow-hidden my-3 cursor-pointer" onclick="openProjectGallery('hololingua')">
+            <img id="card-img-hololingua" src="Hardware-Software-Projects/HoloLingua [My Final Year Project]/play (1).png" alt="HoloLingua VR Screenshot" class="media-contain max-h-full max-w-full p-2" />
+            <button onclick="event.stopPropagation(); changeCardSlide('hololingua', -1)" class="nier-card-arrow absolute left-2 top-1/2 -translate-y-1/2" aria-label="Previous Image">◀ PREV</button>
+            <button onclick="event.stopPropagation(); changeCardSlide('hololingua', 1)" class="nier-card-arrow absolute right-2 top-1/2 -translate-y-1/2" aria-label="Next Image">NEXT ▶</button>
+            <div class="absolute bottom-2 right-2 bg-black/80 text-[10px] font-mono text-[#dad5bf] px-2 py-0.5 border border-white/20">
+              <span id="card-counter-hololingua">1 / 10</span>
+            </div>
+            <button onclick="event.stopPropagation(); openProjectGallery('hololingua')" class="absolute top-2 right-2 bg-black/80 text-[10px] font-mono text-white px-2 py-0.5 border border-white/20 hover:bg-yorha-hazard">
+              🔍 Inspect Fullscreen
+            </button>
+          </div>
         </div>
 
         <div class="space-y-3">
@@ -695,19 +665,19 @@
           </div>
 
           <div class="flex flex-wrap gap-2">
-            <button onclick="openMediaModal('video', 'Hardware-Software-Projects/HoloLingua [My Final Year Project]/Hololingua.mp4', 'HoloLingua VR — Full Demonstration', 'AI-driven conversational language learning in immersive VR using Meta Quest 3s.')" class="nier-menu-btn active text-xs py-2 flex-1 justify-center">
+            <button onclick="openProjectGallery('hololingua')" class="nier-menu-btn active text-xs py-2 flex-1 justify-center">
               <span class="nier-sq"></span>
-              <span>Watch VR Walkthrough ▶</span>
+              <span>View All 10 Media Items 🔍</span>
             </button>
-            <button onclick="openMediaModal('image', 'Hardware-Software-Projects/HoloLingua [My Final Year Project]/play (1).png', 'HoloLingua — VR Gameplay Screen', 'Conversational AI interface with interactive avatar dialogue.')" class="nier-menu-btn text-xs py-2 flex-1 justify-center">
+            <button onclick="openMediaModal('video', 'Hardware-Software-Projects/HoloLingua [My Final Year Project]/Hololingua.mp4', 'HoloLingua VR — Full Demonstration', 'AI-driven conversational language learning in immersive VR using Meta Quest 3s.')" class="nier-menu-btn text-xs py-2 flex-1 justify-center">
               <span class="nier-sq"></span>
-              <span>VR Screenshot 🔍</span>
+              <span>Watch VR Video ▶</span>
             </button>
           </div>
         </div>
       </div>
 
-      <!-- Featured Game 3: "I Don't Wanna Be Itik Salai" -->
+      <!-- Project 4: "I Don't Wanna Be Itik Salai" -->
       <div class="nier-card p-6 sm:p-8 flex flex-col justify-between space-y-4">
         <div>
           <div class="flex justify-between items-center font-mono text-xs text-[var(--text-dim)] pb-2 border-b border-[var(--border-line)]">
@@ -737,37 +707,197 @@
         </div>
       </div>
 
-      <!-- Featured Game 4: Shingeki no Alien & VR Food Truck -->
+      <!-- Project 5: Shingeki no Alien (Separate Distinct Project) -->
       <div class="nier-card p-6 sm:p-8 flex flex-col justify-between space-y-4">
         <div>
           <div class="flex justify-between items-center font-mono text-xs text-[var(--text-dim)] pb-2 border-b border-[var(--border-line)]">
             <span class="font-bold text-[var(--text-main)]">[ 3D SURVIVAL SHOOTER ]</span>
-            <span>GDEVELOP / GODOT</span>
+            <span>GDEVELOP</span>
           </div>
           <h3 class="nier-title text-xl mt-3 text-[var(--text-main)]">
-            SHINGEKI NO ALIEN & VR FOOD TRUCK
+            SHINGEKI NO ALIEN
           </h3>
           <p class="text-xs sm:text-sm font-sans text-[var(--text-secondary)] mt-2 leading-relaxed">
-            Built <em>Shingeki no Alien</em>, a fast-paced 3D survival shooter with AI navigation meshes, and collaborated on <em>Multiplayer VR Food Truck Simulation</em> in Godot with custom 3D asset modeling in Blockbench & Blender.
+            Built a fast-paced 3D survival shooter featuring high-stakes combat scenarios. Configured AI navigation meshes and dynamic tracking behaviors to drive persistent enemy movement and targeting.
           </p>
         </div>
 
         <div class="space-y-3">
           <div class="pt-3 border-t border-[var(--border-line)] flex flex-wrap gap-1.5 font-mono text-[11px]">
             <span class="px-2.5 py-1 bg-[var(--bg-surface)] border border-[var(--border-line)]">GDevelop 3D</span>
-            <span class="px-2.5 py-1 bg-[var(--bg-surface)] border border-[var(--border-line)]">Godot VR</span>
-            <span class="px-2.5 py-1 bg-[var(--bg-surface)] border border-[var(--border-line)]">Blockbench</span>
-            <span class="px-2.5 py-1 bg-[var(--bg-surface)] border border-[var(--border-line)]">Blender</span>
+            <span class="px-2.5 py-1 bg-[var(--bg-surface)] border border-[var(--border-line)]">AI Navmesh</span>
+            <span class="px-2.5 py-1 bg-[var(--bg-surface)] border border-[var(--border-line)]">Survival Combat</span>
           </div>
 
           <div class="flex flex-wrap gap-2">
             <a href="https://gd.games/iraila/shingeki-no-alien-" target="_blank" class="nier-menu-btn active text-xs py-2 flex-1 justify-center">
               <span class="nier-sq"></span>
-              <span>Play Shingeki no Alien →</span>
+              <span>Play on gd.games →</span>
             </a>
-            <button onclick="openMediaModal('video', 'Hardware-Software-Projects/VR Food Truck Simulation [Godot]/Unusual Hotdog Truck_ Alien Shift _ Game Development _ Group 3.mp4', 'VR Food Truck Simulation', 'Collaborative VR game development focusing on 3D modeling and diegetic UI in Godot.')" class="nier-menu-btn text-xs py-2 flex-1 justify-center">
+            <button onclick="openMediaModal('video', 'Hardware-Software-Projects/Shingeki no Alien/Game Development _ Shingeki no Alien.mp4', 'Shingeki no Alien — Gameplay Video', '3D survival combat gameplay and AI navigation demonstration.')" class="nier-menu-btn text-xs py-2 flex-1 justify-center">
               <span class="nier-sq"></span>
-              <span>VR Food Truck Video ▶</span>
+              <span>Watch Video ▶</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 6: VR Food Truck Simulation [Godot] (Separate Distinct Project) -->
+      <div class="nier-card p-6 sm:p-8 flex flex-col justify-between space-y-4">
+        <div>
+          <div class="flex justify-between items-center font-mono text-xs text-[var(--text-dim)] pb-2 border-b border-[var(--border-line)]">
+            <span class="font-bold text-[var(--text-main)]">[ VR MULTIPLAYER SIMULATION ]</span>
+            <span>GODOT / BLENDER</span>
+          </div>
+          <h3 class="nier-title text-xl mt-3 text-[var(--text-main)]">
+            VR FOOD TRUCK SIMULATION
+          </h3>
+          <p class="text-xs sm:text-sm font-sans text-[var(--text-secondary)] mt-2 leading-relaxed">
+            Collaborative VR game development in Godot focusing on 3D asset modeling in Blockbench & Blender, spatial environment sound design, and diegetic instruction UI for fast-paced alien culinary orders.
+          </p>
+        </div>
+
+        <div class="space-y-3">
+          <div class="pt-3 border-t border-[var(--border-line)] flex flex-wrap gap-1.5 font-mono text-[11px]">
+            <span class="px-2.5 py-1 bg-[var(--bg-surface)] border border-[var(--border-line)]">Godot VR</span>
+            <span class="px-2.5 py-1 bg-[var(--bg-surface)] border border-[var(--border-line)]">Blockbench</span>
+            <span class="px-2.5 py-1 bg-[var(--bg-surface)] border border-[var(--border-line)]">Blender 3D</span>
+            <span class="px-2.5 py-1 bg-[var(--bg-surface)] border border-[var(--border-line)]">Spatial Audio</span>
+          </div>
+
+          <button onclick="openMediaModal('video', 'Hardware-Software-Projects/VR Food Truck Simulation [Godot]/Unusual Hotdog Truck_ Alien Shift _ Game Development _ Group 3.mp4', 'Unusual Hotdog Truck: Alien Shift — VR Simulation Video', 'Collaborative VR game development in Godot featuring 3D models and alien diner mechanics.')" class="nier-menu-btn active text-xs py-2 w-full justify-center">
+            <span class="nier-sq"></span>
+            <span>Watch Full VR Gameplay Video ▶</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- SECTION 03: HARDWARE & SOFTWARE PROJECTS -->
+  <!-- ========================================================================= -->
+  <section id="hardware-software" class="py-14 sm:py-20 px-4 sm:px-8 max-w-7xl mx-auto relative z-10 border-t border-[var(--border-line)]">
+    
+    <div class="mb-10">
+      <div class="flex items-center gap-3 font-mono text-xs text-[var(--text-dim)] uppercase tracking-widest mb-1">
+        <span class="w-2.5 h-2.5 bg-[var(--text-main)] inline-block"></span>
+        <span>SECTION 03 // EMBEDDED SYSTEMS & SOFTWARE ENGINEERING</span>
+      </div>
+      <h2 class="nier-title text-3xl sm:text-5xl">
+        HARDWARE & SOFTWARE
+      </h2>
+      <p class="font-mono text-xs sm:text-sm text-[var(--text-secondary)] mt-1">
+        Raspberry Pi embedded automation, IoT REST APIs, robotics, and full-stack software applications.
+      </p>
+    </div>
+
+    <!-- Grid of Real Resume Projects -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+      <!-- Project 1: MBPG Smart Tender Box System (8 Media Items) -->
+      <div class="nier-card p-6 sm:p-8 flex flex-col justify-between space-y-4">
+        <div>
+          <!-- Card Image Carousel -->
+          <div class="relative aspect-[16/10] bg-black/60 border border-[var(--border-line)] flex items-center justify-center overflow-hidden mb-4">
+            <img id="card-img-tender" src="Hardware-Software-Projects/MBPG Smart Tender Box System/tenderA.jpg" alt="MBPG Smart Tender Box System" class="media-contain max-h-full max-w-full p-2" />
+            
+            <button onclick="changeCardSlide('tender', -1)" class="nier-card-arrow absolute left-2 top-1/2 -translate-y-1/2">
+              ◀ PREV
+            </button>
+            <button onclick="changeCardSlide('tender', 1)" class="nier-card-arrow absolute right-2 top-1/2 -translate-y-1/2">
+              NEXT ▶
+            </button>
+
+            <div class="absolute bottom-2 right-2 bg-black/80 text-[10px] font-mono text-[#dad5bf] px-2 py-0.5 border border-white/20">
+              <span id="card-counter-tender">1 / 8</span>
+            </div>
+
+            <button onclick="openProjectGallery('tender')" class="absolute top-2 right-2 bg-black/80 text-[10px] font-mono text-white px-2 py-0.5 border border-white/20 hover:bg-yorha-hazard">
+              🔍 Inspect Full Size
+            </button>
+          </div>
+
+          <div class="flex justify-between items-center font-mono text-[11px] text-[var(--text-dim)] pb-1.5 border-b border-[var(--border-line)]">
+            <span class="font-bold text-[var(--text-main)]">[ EMBEDDED IOT ]</span>
+            <span>AR MECHATRONICS PLT</span>
+          </div>
+          <h3 class="nier-title text-xl mt-2 text-[var(--text-main)]">
+            MBPG SMART TENDER BOX SYSTEM
+          </h3>
+          <p class="text-xs font-sans text-[var(--text-secondary)] mt-2 leading-relaxed">
+            Programmed and optimized Raspberry Pi control scripts using Python to automate physical security locks via solenoid relays. Integrated physical IoT devices with a Django backend and developed custom REST APIs to process requests between hardware and web servers.
+          </p>
+        </div>
+
+        <div class="space-y-3">
+          <div class="pt-2 border-t border-[var(--border-line)] flex flex-wrap gap-1 font-mono text-[10px]">
+            <span class="px-2 py-0.5 bg-[var(--bg-surface)] border border-[var(--border-line)]">Python</span>
+            <span class="px-2 py-0.5 bg-[var(--bg-surface)] border border-[var(--border-line)]">Raspberry Pi</span>
+            <span class="px-2 py-0.5 bg-[var(--bg-surface)] border border-[var(--border-line)]">GPIO</span>
+            <span class="px-2 py-0.5 bg-[var(--bg-surface)] border border-[var(--border-line)]">Django REST</span>
+          </div>
+
+          <button onclick="openProjectGallery('tender')" class="nier-menu-btn active text-xs py-2 w-full justify-center">
+            <span class="nier-sq"></span>
+            <span>View All 8 Hardware & Architecture Images 🔍</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Project 2: Hosp-Tracker Navigation Robot (14 Media Items) -->
+      <div class="nier-card p-6 sm:p-8 flex flex-col justify-between space-y-4">
+        <div>
+          <!-- Card Image Carousel -->
+          <div class="relative aspect-[16/10] bg-black/60 border border-[var(--border-line)] flex items-center justify-center overflow-hidden mb-4">
+            <img id="card-img-hosptracker" src="Hardware-Software-Projects/Hosp-Tracker Navigation Robot [Robotic Design and Development Technology with Raspberry Pi Microprocessor]/Patient_POV_1.jpg" alt="Hosp-Tracker Dashboard" class="media-contain max-h-full max-w-full p-2" />
+            
+            <button onclick="changeCardSlide('hosptracker', -1)" class="nier-card-arrow absolute left-2 top-1/2 -translate-y-1/2">
+              ◀ PREV
+            </button>
+            <button onclick="changeCardSlide('hosptracker', 1)" class="nier-card-arrow absolute right-2 top-1/2 -translate-y-1/2">
+              NEXT ▶
+            </button>
+
+            <div class="absolute bottom-2 right-2 bg-black/80 text-[10px] font-mono text-[#dad5bf] px-2 py-0.5 border border-white/20">
+              <span id="card-counter-hosptracker">1 / 14</span>
+            </div>
+
+            <button onclick="openProjectGallery('hosptracker')" class="absolute top-2 right-2 bg-black/80 text-[10px] font-mono text-white px-2 py-0.5 border border-white/20 hover:bg-yorha-hazard">
+              🔍 Inspect Full Size
+            </button>
+          </div>
+
+          <div class="flex justify-between items-center font-mono text-[11px] text-[var(--text-dim)] pb-1.5 border-b border-[var(--border-line)]">
+            <span class="font-bold text-[var(--text-main)]">[ ROBOTICS & WEB ]</span>
+            <span>KPT CERTIFICATE</span>
+          </div>
+          <h3 class="nier-title text-xl mt-2 text-[var(--text-main)]">
+            HOSP-TRACKER NAVIGATION ROBOT
+          </h3>
+          <p class="text-xs font-sans text-[var(--text-secondary)] mt-2 leading-relaxed">
+            Programmed a Raspbot automated navigation system for a hospital environment as part of a Robotic Design Technology certification. Designed and prototyped a companion web dashboard to track and visualize patient journey flows alongside robot operations.
+          </p>
+        </div>
+
+        <div class="space-y-3">
+          <div class="pt-2 border-t border-[var(--border-line)] flex flex-wrap gap-1 font-mono text-[10px]">
+            <span class="px-2 py-0.5 bg-[var(--bg-surface)] border border-[var(--border-line)]">Raspberry Pi</span>
+            <span class="px-2 py-0.5 bg-[var(--bg-surface)] border border-[var(--border-line)]">Python</span>
+            <span class="px-2 py-0.5 bg-[var(--bg-surface)] border border-[var(--border-line)]">Raspbot</span>
+            <span class="px-2 py-0.5 bg-[var(--bg-surface)] border border-[var(--border-line)]">Telemetry Dashboard</span>
+          </div>
+
+          <div class="flex flex-wrap gap-2">
+            <button onclick="openProjectGallery('hosptracker')" class="nier-menu-btn active text-xs py-2 flex-1 justify-center">
+              <span class="nier-sq"></span>
+              <span>View All 14 Photos 🔍</span>
+            </button>
+            <button onclick="openMediaModal('video', 'Hardware-Software-Projects/Hosp-Tracker Navigation Robot [Robotic Design and Development Technology with Raspberry Pi Microprocessor]/Demo HospTracker.MOV', 'Hosp-Tracker — Video Demonstration', 'Demonstration of the autonomous navigation robot pathing and dashboard synchronization.')" class="nier-menu-btn text-xs py-2 flex-1 justify-center">
+              <span class="nier-sq"></span>
+              <span>Watch Video ▶</span>
             </button>
           </div>
         </div>
@@ -806,235 +936,217 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
       <!-- Design 1: Food Arcade Dining Table App (Figma Prototype) -->
-      <div class="nier-card overflow-hidden flex flex-col justify-between group">
-        <div class="aspect-[4/3] relative overflow-hidden bg-black/40 border-b border-[var(--border-line)] cursor-pointer" onclick="openMediaModal('video', 'Designs-Portfolio/Figma Section/Food Arcade Dining Table Prototype/arked Meranti TableReserved.mp4', 'Food Arcade Dining Table — Figma Prototype', 'Interactive UI prototype walkthrough for table reservations and food ordering.')">
-          <div class="w-full h-full bg-[var(--bg-surface)] flex flex-col items-center justify-center p-6 text-center">
-            <span class="font-mono text-3xl mb-1">🍱</span>
-            <span class="nier-title text-sm text-[var(--text-main)]">FOOD ARCADE RESERVATION APP</span>
-            <span class="font-mono text-[10px] text-yorha-hazard mt-1 font-bold">FIGMA UI/UX PROTOTYPE</span>
+      <div class="nier-card p-6 flex flex-col justify-between space-y-4">
+        <div>
+          <div class="aspect-[16/10] relative bg-black/60 border border-[var(--border-line)] flex items-center justify-center overflow-hidden mb-3 cursor-pointer" onclick="openMediaModal('video', 'Designs-Portfolio/Figma Section/Food Arcade Dining Table Prototype/arked Meranti TableReserved.mp4', 'Food Arcade Dining Table — Figma Prototype', 'Interactive UI prototype walkthrough for table reservations and food ordering.')">
+            <div class="w-full h-full bg-[var(--bg-surface)] flex flex-col items-center justify-center p-4 text-center">
+              <span class="font-mono text-3xl mb-1">🍱</span>
+              <span class="nier-title text-xs text-[var(--text-main)]">FOOD ARCADE RESERVATION APP</span>
+              <span class="font-mono text-[9px] text-yorha-hazard mt-1 font-bold">FIGMA UI/UX PROTOTYPE</span>
+            </div>
+            <div class="absolute inset-0 bg-black/20 opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center">
+              <span class="px-2 py-1 bg-black/80 text-[10px] font-mono text-white border border-white/20">
+                ▶ Watch Prototype Walkthrough
+              </span>
+            </div>
           </div>
-          <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-            <span class="px-2.5 py-1 bg-black/80 text-[11px] font-mono text-white border border-white/20">
-              ▶ Watch Prototype Walkthrough
-            </span>
-          </div>
-          <div class="absolute top-2 left-2">
-            <span class="px-2 py-0.5 bg-black/80 text-[10px] font-mono text-white border border-white/20">
-              FIGMA / UX RESEARCH
-            </span>
-          </div>
+
+          <h4 class="nier-title text-base text-[var(--text-main)]">
+            FOOD ARCADE DINING TABLE APP
+          </h4>
+          <p class="text-xs font-sans text-[var(--text-secondary)] mt-2 leading-relaxed">
+            Developed an interactive UI prototype in Figma and conducted comprehensive user testing sessions, providing task-based instructions to observe user flow, gather feedback, and iterate on mechanics.
+          </p>
         </div>
 
-        <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
-          <div>
-            <h4 class="nier-title text-base text-[var(--text-main)]">
-              FOOD ARCADE DINING TABLE APP
-            </h4>
-            <p class="text-xs font-sans text-[var(--text-secondary)] mt-2 leading-relaxed">
-              Developed an interactive UI prototype in Figma and conducted comprehensive user testing sessions, providing task-based instructions to observe user flow, gather feedback, and iterate on mechanics.
-            </p>
-          </div>
-
-          <div class="space-y-2 pt-2 border-t border-[var(--border-line)]">
-            <a href="https://www.figma.com/proto/Q1V71P9fgFQn5mjX3VUECO/arked-Meranti-TableReserved?node-id=309-28&starting-point-node-id=103%3A4&t=RJAYZETN1KfvvOhF-1" target="_blank" class="nier-menu-btn active text-xs py-1.5 w-full justify-center">
-              <span class="nier-sq"></span>
-              <span>Open Figma Prototype Live ↗</span>
-            </a>
-            <button onclick="openMediaModal('video', 'Designs-Portfolio/Figma Section/Food Arcade Dining Table Prototype/arked Meranti TableReserved.mp4', 'Food Arcade Prototype Walkthrough', 'Walkthrough video of the interactive Figma prototype.')" class="nier-menu-btn text-xs py-1.5 w-full justify-center">
-              <span class="nier-sq"></span>
-              <span>Watch Prototype Video ▶</span>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Design 2: Website Design (Canva Matchacode) -->
-      <div class="nier-card overflow-hidden flex flex-col justify-between group">
-        <div class="aspect-[4/3] relative overflow-hidden bg-black/40 border-b border-[var(--border-line)] cursor-pointer" onclick="openMediaModal('image', 'Designs-Portfolio/Canva Section/Website Design/Cua0pUQRm.png', 'Canva Website Design — Matchacode', 'Full responsive website layout designed in Canva.')">
-          <img src="Designs-Portfolio/Canva Section/Website Design/Cua0pUQRm.png" alt="Canva Website Design" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-          <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-            <span class="px-2.5 py-1 bg-black/80 text-[11px] font-mono text-white border border-white/20">
-              🔍 Inspect Website Layout
-            </span>
-          </div>
-          <div class="absolute top-2 left-2">
-            <span class="px-2 py-0.5 bg-black/80 text-[10px] font-mono text-white border border-white/20">
-              CANVA LIVE SITE
-            </span>
-          </div>
-        </div>
-
-        <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
-          <div>
-            <h4 class="nier-title text-base text-[var(--text-main)]">
-              CANVA WEBSITE DESIGN
-            </h4>
-            <p class="text-xs font-sans text-[var(--text-secondary)] mt-2 leading-relaxed">
-              Modern aesthetic website layout engineered in Canva featuring clean section hierarchies, typography balance, and published on a live domain.
-            </p>
-          </div>
-
-          <div class="space-y-2 pt-2 border-t border-[var(--border-line)]">
-            <a href="https://matchacode.my.canva.site/website-d6/" target="_blank" class="nier-menu-btn active text-xs py-1.5 w-full justify-center">
-              <span class="nier-sq"></span>
-              <span>Open Live Canva Website ↗</span>
-            </a>
-            <button onclick="openMediaModal('image', 'Designs-Portfolio/Canva Section/Website Design/FWhCNytsA.png', 'Canva Website Design — Second View', 'Alternative section layout for the website.')" class="nier-menu-btn text-xs py-1.5 w-full justify-center">
-              <span class="nier-sq"></span>
-              <span>Inspect Secondary Layout →</span>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Design 3: Instagram Post & Social Media Kit -->
-      <div class="nier-card overflow-hidden flex flex-col justify-between group">
-        <div class="aspect-[4/3] relative overflow-hidden bg-black/40 border-b border-[var(--border-line)] cursor-pointer" onclick="openMediaModal('image', 'Designs-Portfolio/Canva Section/Instagram Post Design/InstagramPost_D2/1.png', 'Instagram Social Post Design', 'Engaging social media post kit crafted in Canva.')">
-          <img src="Designs-Portfolio/Canva Section/Instagram Post Design/InstagramPost_D2/1.png" alt="Canva Instagram Design" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-          <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-            <span class="px-2.5 py-1 bg-black/80 text-[11px] font-mono text-white border border-white/20">
-              🔍 Inspect Post Design
-            </span>
-          </div>
-          <div class="absolute top-2 left-2">
-            <span class="px-2 py-0.5 bg-black/80 text-[10px] font-mono text-white border border-white/20">
-              CANVA SOCIAL KIT
-            </span>
-          </div>
-        </div>
-
-        <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
-          <div>
-            <h4 class="nier-title text-base text-[var(--text-main)]">
-              INSTAGRAM POST DESIGN
-            </h4>
-            <p class="text-xs font-sans text-[var(--text-secondary)] mt-2 leading-relaxed">
-              High-engagement social media visual assets designed with Canva Pro, utilizing curated color palettes, typography scales, and modular card systems.
-            </p>
-          </div>
-
-          <div class="space-y-2 pt-2 border-t border-[var(--border-line)]">
-            <a href="https://www.canva.com/design/DAHRx1GT4F8/vTi4U37f2gKqWBsxHccJKw/view" target="_blank" class="nier-menu-btn active text-xs py-1.5 w-full justify-center">
-              <span class="nier-sq"></span>
-              <span>Open Canva Post View ↗</span>
-            </a>
-            <button onclick="openMediaModal('image', 'Designs-Portfolio/Canva Section/Instagram Post Design/InstagramPost_D2/2.png', 'Instagram Post — Slide 2', 'Second slide of the social post set.')" class="nier-menu-btn text-xs py-1.5 w-full justify-center">
-              <span class="nier-sq"></span>
-              <span>Inspect Slide 2 →</span>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Design 4: Presentation Deck Design -->
-      <div class="nier-card overflow-hidden flex flex-col justify-between group">
-        <div class="aspect-[4/3] relative overflow-hidden bg-black/40 border-b border-[var(--border-line)] cursor-pointer" onclick="openMediaModal('image', 'Designs-Portfolio/Canva Section/Presentation Design/Presentation_D1/1.png', 'Canva Presentation Slides', 'Professional pitch and presentation slide deck.')">
-          <img src="Designs-Portfolio/Canva Section/Presentation Design/Presentation_D1/1.png" alt="Canva Presentation Design" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-          <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-            <span class="px-2.5 py-1 bg-black/80 text-[11px] font-mono text-white border border-white/20">
-              🔍 Inspect Slide Deck
-            </span>
-          </div>
-          <div class="absolute top-2 left-2">
-            <span class="px-2 py-0.5 bg-black/80 text-[10px] font-mono text-white border border-white/20">
-              CANVA SLIDES
-            </span>
-          </div>
-        </div>
-
-        <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
-          <div>
-            <h4 class="nier-title text-base text-[var(--text-main)]">
-              PRESENTATION SLIDE DECK
-            </h4>
-            <p class="text-xs font-sans text-[var(--text-secondary)] mt-2 leading-relaxed">
-              Polished presentation design created in Canva for structured data storytelling, executive summaries, and visual project breakdowns.
-            </p>
-          </div>
-
-          <div class="space-y-2 pt-2 border-t border-[var(--border-line)]">
-            <a href="https://www.canva.com/design/DAHRx9ls4Vc/GG4wPgzsVdl3neN4gGmDgQ/view" target="_blank" class="nier-menu-btn active text-xs py-1.5 w-full justify-center">
-              <span class="nier-sq"></span>
-              <span>Open Canva Slides View ↗</span>
-            </a>
-            <button onclick="openMediaModal('image', 'Designs-Portfolio/Canva Section/Presentation Design/Presentation_D1/2.png', 'Presentation Deck — Slide 2', 'Data breakdown slide.')" class="nier-menu-btn text-xs py-1.5 w-full justify-center">
-              <span class="nier-sq"></span>
-              <span>Inspect Slide 2 →</span>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Design 5: Brochure Design -->
-      <div class="nier-card overflow-hidden flex flex-col justify-between group">
-        <div class="aspect-[4/3] relative overflow-hidden bg-black/40 border-b border-[var(--border-line)] cursor-pointer" onclick="openMediaModal('image', 'Designs-Portfolio/Canva Section/Brochure Design/Brochure_D4.png', 'Canva Brochure Design', 'Tri-fold print brochure design layout.')">
-          <img src="Designs-Portfolio/Canva Section/Brochure Design/Brochure_D4.png" alt="Canva Brochure Design" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-          <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-            <span class="px-2.5 py-1 bg-black/80 text-[11px] font-mono text-white border border-white/20">
-              🔍 Inspect Brochure
-            </span>
-          </div>
-          <div class="absolute top-2 left-2">
-            <span class="px-2 py-0.5 bg-black/80 text-[10px] font-mono text-white border border-white/20">
-              PRINT & EDITORIAL
-            </span>
-          </div>
-        </div>
-
-        <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
-          <div>
-            <h4 class="nier-title text-base text-[var(--text-main)]">
-              BROCHURE DESIGN
-            </h4>
-            <p class="text-xs font-sans text-[var(--text-secondary)] mt-2 leading-relaxed">
-              Tri-fold print publication layout engineered with strict bleed margins, typographic hierarchy, and visual branding assets in Canva.
-            </p>
-          </div>
-
-          <button onclick="openMediaModal('image', 'Designs-Portfolio/Canva Section/Brochure Design/Brochure_D4.png', 'Full Brochure Design', 'Tri-fold brochure layout created in Canva.')" class="nier-menu-btn text-xs py-1.5 w-full justify-center">
+        <div class="space-y-2 pt-2 border-t border-[var(--border-line)]">
+          <a href="https://www.figma.com/proto/Q1V71P9fgFQn5mjX3VUECO/arked-Meranti-TableReserved?node-id=309-28&starting-point-node-id=103%3A4&t=RJAYZETN1KfvvOhF-1" target="_blank" class="nier-menu-btn active text-xs py-1.5 w-full justify-center">
             <span class="nier-sq"></span>
-            <span>Inspect Full-Resolution Brochure 🔍</span>
+            <span>Open Figma Prototype Live ↗</span>
+          </a>
+          <button onclick="openMediaModal('video', 'Designs-Portfolio/Figma Section/Food Arcade Dining Table Prototype/arked Meranti TableReserved.mp4', 'Food Arcade Prototype Walkthrough', 'Walkthrough video of the interactive Figma prototype.')" class="nier-menu-btn text-xs py-1.5 w-full justify-center">
+            <span class="nier-sq"></span>
+            <span>Watch Prototype Video ▶</span>
           </button>
         </div>
       </div>
 
-      <!-- Design 6: Business Cards & Identity Suite -->
-      <div class="nier-card overflow-hidden flex flex-col justify-between group">
-        <div class="aspect-[4/3] relative overflow-hidden bg-black/40 border-b border-[var(--border-line)] cursor-pointer" onclick="openMediaModal('image', 'Designs-Portfolio/Canva Section/BusinessCard Design/BusinessCard_D8/1.png', 'Business Card Design', 'Clean modern stationery and business card layout.')">
-          <img src="Designs-Portfolio/Canva Section/BusinessCard Design/BusinessCard_D8/1.png" alt="Business Card Design" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-          <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-            <span class="px-2.5 py-1 bg-black/80 text-[11px] font-mono text-white border border-white/20">
-              🔍 Inspect Business Card
-            </span>
-          </div>
-          <div class="absolute top-2 left-2">
-            <span class="px-2 py-0.5 bg-black/80 text-[10px] font-mono text-white border border-white/20">
-              STATIONERY
-            </span>
-          </div>
-        </div>
+      <!-- Design 2: Website Design (Canva Matchacode) -->
+      <div class="nier-card p-6 flex flex-col justify-between space-y-4">
+        <div>
+          <div class="aspect-[16/10] relative bg-black/60 border border-[var(--border-line)] flex items-center justify-center overflow-hidden mb-3">
+            <img id="card-img-webdesign" src="Designs-Portfolio/Canva Section/Website Design/Cua0pUQRm.png" alt="Canva Website Design" class="media-contain max-h-full max-w-full p-2" />
+            
+            <button onclick="changeCardSlide('webdesign', -1)" class="nier-card-arrow absolute left-2 top-1/2 -translate-y-1/2">◀</button>
+            <button onclick="changeCardSlide('webdesign', 1)" class="nier-card-arrow absolute right-2 top-1/2 -translate-y-1/2">▶</button>
+            
+            <div class="absolute bottom-2 right-2 bg-black/80 text-[10px] font-mono text-[#dad5bf] px-1.5 py-0.5 border border-white/20">
+              <span id="card-counter-webdesign">1 / 2</span>
+            </div>
 
-        <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
-          <div>
-            <h4 class="nier-title text-base text-[var(--text-main)]">
-              BUSINESS CARD & STATIONERY
-            </h4>
-            <p class="text-xs font-sans text-[var(--text-secondary)] mt-2 leading-relaxed">
-              Custom corporate business card and identity stationery suite featuring minimalist layout balancing, clean font pairings, and print die-lines.
-            </p>
-          </div>
-
-          <div class="flex gap-2">
-            <button onclick="openMediaModal('image', 'Designs-Portfolio/Canva Section/BusinessCard Design/BusinessCard_D8/1.png', 'Business Card — Front', 'Front view of the stationery card design.')" class="nier-menu-btn text-xs py-1.5 flex-1 justify-center">
-              <span class="nier-sq"></span>
-              <span>Front →</span>
-            </button>
-            <button onclick="openMediaModal('image', 'Designs-Portfolio/Canva Section/BusinessCard Design/BusinessCard_D8/2.png', 'Business Card — Back', 'Back view of the stationery card design.')" class="nier-menu-btn text-xs py-1.5 flex-1 justify-center">
-              <span class="nier-sq"></span>
-              <span>Back →</span>
+            <button onclick="openProjectGallery('webdesign')" class="absolute top-2 right-2 bg-black/80 text-[10px] font-mono text-white px-2 py-0.5 border border-white/20 hover:bg-yorha-hazard">
+              🔍 Inspect
             </button>
           </div>
+
+          <h4 class="nier-title text-base text-[var(--text-main)]">
+            CANVA WEBSITE DESIGN
+          </h4>
+          <p class="text-xs font-sans text-[var(--text-secondary)] mt-2 leading-relaxed">
+            Modern aesthetic website layout engineered in Canva featuring clean section hierarchies, typography balance, and published on a live domain.
+          </p>
         </div>
+
+        <div class="space-y-2 pt-2 border-t border-[var(--border-line)]">
+          <a href="https://matchacode.my.canva.site/website-d6/" target="_blank" class="nier-menu-btn active text-xs py-1.5 w-full justify-center">
+            <span class="nier-sq"></span>
+            <span>Open Live Canva Website ↗</span>
+          </a>
+          <button onclick="openProjectGallery('webdesign')" class="nier-menu-btn text-xs py-1.5 w-full justify-center">
+            <span class="nier-sq"></span>
+            <span>Inspect All Slides 🔍</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Design 3: Instagram Post & Social Media Kit (3 Images) -->
+      <div class="nier-card p-6 flex flex-col justify-between space-y-4">
+        <div>
+          <div class="aspect-[16/10] relative bg-black/60 border border-[var(--border-line)] flex items-center justify-center overflow-hidden mb-3">
+            <img id="card-img-insta" src="Designs-Portfolio/Canva Section/Instagram Post Design/InstagramPost_D2/1.png" alt="Canva Instagram Design" class="media-contain max-h-full max-w-full p-2" />
+            
+            <button onclick="changeCardSlide('insta', -1)" class="nier-card-arrow absolute left-2 top-1/2 -translate-y-1/2">◀</button>
+            <button onclick="changeCardSlide('insta', 1)" class="nier-card-arrow absolute right-2 top-1/2 -translate-y-1/2">▶</button>
+            
+            <div class="absolute bottom-2 right-2 bg-black/80 text-[10px] font-mono text-[#dad5bf] px-1.5 py-0.5 border border-white/20">
+              <span id="card-counter-insta">1 / 3</span>
+            </div>
+
+            <button onclick="openProjectGallery('insta')" class="absolute top-2 right-2 bg-black/80 text-[10px] font-mono text-white px-2 py-0.5 border border-white/20 hover:bg-yorha-hazard">
+              🔍 Inspect
+            </button>
+          </div>
+
+          <h4 class="nier-title text-base text-[var(--text-main)]">
+            INSTAGRAM POST DESIGN (CANVA)
+          </h4>
+          <p class="text-xs font-sans text-[var(--text-secondary)] mt-2 leading-relaxed">
+            High-engagement social media visual assets designed with Canva Pro, utilizing curated color palettes, typography scales, and modular card systems.
+          </p>
+        </div>
+
+        <div class="space-y-2 pt-2 border-t border-[var(--border-line)]">
+          <a href="https://www.canva.com/design/DAHRx1GT4F8/vTi4U37f2gKqWBsxHccJKw/view" target="_blank" class="nier-menu-btn active text-xs py-1.5 w-full justify-center">
+            <span class="nier-sq"></span>
+            <span>Open Canva Post View ↗</span>
+          </a>
+          <button onclick="openProjectGallery('insta')" class="nier-menu-btn text-xs py-1.5 w-full justify-center">
+            <span class="nier-sq"></span>
+            <span>Inspect All 3 Slides 🔍</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Design 4: Presentation Deck Design (4 Images) -->
+      <div class="nier-card p-6 flex flex-col justify-between space-y-4">
+        <div>
+          <div class="aspect-[16/10] relative bg-black/60 border border-[var(--border-line)] flex items-center justify-center overflow-hidden mb-3">
+            <img id="card-img-pres" src="Designs-Portfolio/Canva Section/Presentation Design/Presentation_D1/1.png" alt="Canva Presentation Design" class="media-contain max-h-full max-w-full p-2" />
+            
+            <button onclick="changeCardSlide('pres', -1)" class="nier-card-arrow absolute left-2 top-1/2 -translate-y-1/2">◀</button>
+            <button onclick="changeCardSlide('pres', 1)" class="nier-card-arrow absolute right-2 top-1/2 -translate-y-1/2">▶</button>
+            
+            <div class="absolute bottom-2 right-2 bg-black/80 text-[10px] font-mono text-[#dad5bf] px-1.5 py-0.5 border border-white/20">
+              <span id="card-counter-pres">1 / 4</span>
+            </div>
+
+            <button onclick="openProjectGallery('pres')" class="absolute top-2 right-2 bg-black/80 text-[10px] font-mono text-white px-2 py-0.5 border border-white/20 hover:bg-yorha-hazard">
+              🔍 Inspect
+            </button>
+          </div>
+
+          <h4 class="nier-title text-base text-[var(--text-main)]">
+            PRESENTATION SLIDE DECK
+          </h4>
+          <p class="text-xs font-sans text-[var(--text-secondary)] mt-2 leading-relaxed">
+            Polished presentation design created in Canva for structured data storytelling, executive summaries, and visual project breakdowns.
+          </p>
+        </div>
+
+        <div class="space-y-2 pt-2 border-t border-[var(--border-line)]">
+          <a href="https://www.canva.com/design/DAHRx9ls4Vc/GG4wPgzsVdl3neN4gGmDgQ/view" target="_blank" class="nier-menu-btn active text-xs py-1.5 w-full justify-center">
+            <span class="nier-sq"></span>
+            <span>Open Canva Slides View ↗</span>
+          </a>
+          <button onclick="openProjectGallery('pres')" class="nier-menu-btn text-xs py-1.5 w-full justify-center">
+            <span class="nier-sq"></span>
+            <span>Inspect All 4 Slides 🔍</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Design 5: Business Cards & Identity Suite (6 Images) -->
+      <div class="nier-card p-6 flex flex-col justify-between space-y-4">
+        <div>
+          <div class="aspect-[16/10] relative bg-black/60 border border-[var(--border-line)] flex items-center justify-center overflow-hidden mb-3">
+            <img id="card-img-cards" src="Designs-Portfolio/Canva Section/BusinessCard Design/BusinessCard_D8/1.png" alt="Business Card Design" class="media-contain max-h-full max-w-full p-2" />
+            
+            <button onclick="changeCardSlide('cards', -1)" class="nier-card-arrow absolute left-2 top-1/2 -translate-y-1/2">◀</button>
+            <button onclick="changeCardSlide('cards', 1)" class="nier-card-arrow absolute right-2 top-1/2 -translate-y-1/2">▶</button>
+            
+            <div class="absolute bottom-2 right-2 bg-black/80 text-[10px] font-mono text-[#dad5bf] px-1.5 py-0.5 border border-white/20">
+              <span id="card-counter-cards">1 / 6</span>
+            </div>
+
+            <button onclick="openProjectGallery('cards')" class="absolute top-2 right-2 bg-black/80 text-[10px] font-mono text-white px-2 py-0.5 border border-white/20 hover:bg-yorha-hazard">
+              🔍 Inspect
+            </button>
+          </div>
+
+          <h4 class="nier-title text-base text-[var(--text-main)]">
+            BUSINESS CARD & STATIONERY
+          </h4>
+          <p class="text-xs font-sans text-[var(--text-secondary)] mt-2 leading-relaxed">
+            Custom corporate business card and identity stationery suite featuring minimalist layout balancing, clean font pairings, and print die-lines.
+          </p>
+        </div>
+
+        <button onclick="openProjectGallery('cards')" class="nier-menu-btn active text-xs py-1.5 w-full justify-center">
+          <span class="nier-sq"></span>
+          <span>View All 6 Business Card Variations 🔍</span>
+        </button>
+      </div>
+
+      <!-- Design 6: Brochure, Menu & Collages (5 Images) -->
+      <div class="nier-card p-6 flex flex-col justify-between space-y-4">
+        <div>
+          <div class="aspect-[16/10] relative bg-black/60 border border-[var(--border-line)] flex items-center justify-center overflow-hidden mb-3">
+            <img id="card-img-editorial" src="Designs-Portfolio/Canva Section/Brochure Design/Brochure_D4.png" alt="Canva Brochure Design" class="media-contain max-h-full max-w-full p-2" />
+            
+            <button onclick="changeCardSlide('editorial', -1)" class="nier-card-arrow absolute left-2 top-1/2 -translate-y-1/2">◀</button>
+            <button onclick="changeCardSlide('editorial', 1)" class="nier-card-arrow absolute right-2 top-1/2 -translate-y-1/2">▶</button>
+            
+            <div class="absolute bottom-2 right-2 bg-black/80 text-[10px] font-mono text-[#dad5bf] px-1.5 py-0.5 border border-white/20">
+              <span id="card-counter-editorial">1 / 6</span>
+            </div>
+
+            <button onclick="openProjectGallery('editorial')" class="absolute top-2 right-2 bg-black/80 text-[10px] font-mono text-white px-2 py-0.5 border border-white/20 hover:bg-yorha-hazard">
+              🔍 Inspect
+            </button>
+          </div>
+
+          <h4 class="nier-title text-base text-[var(--text-main)]">
+            BROCHURE, MENU & COLLAGES
+          </h4>
+          <p class="text-xs font-sans text-[var(--text-secondary)] mt-2 leading-relaxed">
+            Print publications, restaurant menus, photo collages, and resume layouts engineered in Canva with strict print margins and typography hierarchy.
+          </p>
+        </div>
+
+        <button onclick="openProjectGallery('editorial')" class="nier-menu-btn active text-xs py-1.5 w-full justify-center">
+          <span class="nier-sq"></span>
+          <span>View All 6 Editorial Assets 🔍</span>
+        </button>
       </div>
 
     </div>
@@ -1261,43 +1373,480 @@
   </footer>
 
   <!-- ========================================================================= -->
-  <!-- YORHA MEDIA INSPECTION MODAL (Supports Images & Native Videos) -->
+  <!-- YORHA MEDIA INSPECTION MODAL (With Fullscreen & Arrow Controls) -->
   <!-- ========================================================================= -->
-  <div id="media-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 sm:p-6 bg-black/85 backdrop-blur-md" onclick="closeMediaModal(event)">
-    <div class="relative w-full max-w-4xl nier-card border-2 border-[var(--border-dark)] bg-[var(--bg-main)] shadow-2xl flex flex-col overflow-hidden max-h-[92vh]" onclick="event.stopPropagation()">
+  <div id="media-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-2 sm:p-4 bg-black/90 backdrop-blur-md" onclick="closeMediaModal(event)">
+    <div id="modal-container-box" class="relative w-full max-w-5xl nier-card border-2 border-[var(--border-dark)] bg-[var(--bg-main)] shadow-2xl flex flex-col overflow-hidden max-h-[96vh]" onclick="event.stopPropagation()">
       
       <!-- Modal Header -->
-      <div class="px-5 py-3 bg-[var(--bg-surface)] border-b border-[var(--border-line)] flex items-center justify-between font-mono text-xs">
-        <div class="flex items-center gap-2">
-          <span class="w-2 h-2 bg-yorha-hazard inline-block"></span>
-          <span id="modal-title" class="font-bold text-[var(--text-main)]">MEDIA INSPECTION</span>
+      <div class="px-4 py-2.5 bg-[var(--bg-surface)] border-b border-[var(--border-line)] flex items-center justify-between font-mono text-xs">
+        <div class="flex items-center gap-2 overflow-hidden text-ellipsis whitespace-nowrap">
+          <span class="w-2 h-2 bg-yorha-hazard inline-block shrink-0"></span>
+          <span id="modal-title" class="font-bold text-[var(--text-main)] truncate">MEDIA INSPECTION</span>
+          <span id="modal-index-counter" class="text-[var(--text-dim)] ml-2 shrink-0"></span>
         </div>
-        <button onclick="closeMediaModalDirect()" class="nier-menu-btn py-1 px-3 text-[11px]">[ ESC / CLOSE ]</button>
+        
+        <div class="flex items-center gap-2 shrink-0">
+          <!-- Fullscreen Trigger Button -->
+          <button id="modal-fullscreen-btn" onclick="toggleModalFullscreen()" class="nier-menu-btn py-1 px-2.5 text-[11px]" title="Toggle Fullscreen View">
+            <span>⛶ FULLSCREEN</span>
+          </button>
+          <button onclick="closeMediaModalDirect()" class="nier-menu-btn py-1 px-3 text-[11px]">[ ESC / CLOSE ]</button>
+        </div>
       </div>
 
-      <!-- Media Viewport -->
-      <div class="relative flex-1 bg-black flex items-center justify-center min-h-[300px] max-h-[65vh] p-2 overflow-hidden">
-        <img id="modal-img" src="" alt="Dossier View" class="hidden max-w-full max-h-full object-contain" />
-        <video id="modal-video" controls class="hidden max-w-full max-h-full"></video>
-      </div>
-
-      <!-- Modal Footer Caption -->
-      <div class="p-4 bg-[var(--bg-surface)] border-t border-[var(--border-line)] font-sans text-xs text-[var(--text-secondary)] flex justify-between items-center">
-        <p id="modal-caption" class="leading-relaxed"></p>
-        <button onclick="closeMediaModalDirect()" class="nier-menu-btn py-1.5 px-4 text-xs font-mono ml-4 shrink-0">
-          <span class="nier-sq"></span>
-          <span>Close</span>
+      <!-- Media Viewport (Strictly object-contain - Zero Cropping) -->
+      <div id="modal-media-viewport" class="relative flex-1 bg-black flex items-center justify-center min-h-[350px] max-h-[72vh] p-2 overflow-hidden">
+        
+        <!-- Left Navigation Arrow -->
+        <button id="modal-prev-btn" onclick="navigateModalGallery(-1)" class="nier-card-arrow absolute left-3 top-1/2 -translate-y-1/2 z-20 py-3 px-3 text-sm font-bold shadow-lg" aria-label="Previous Media">
+          ◀
         </button>
+
+        <!-- Image Element (Never cropped, object-contain) -->
+        <img id="modal-img" src="" alt="Dossier View" ondblclick="toggleModalFullscreen()" title="Double click to toggle Fullscreen" class="hidden media-contain max-h-[70vh] max-w-full cursor-pointer" />
+        
+        <!-- Video Element (Never cropped, object-contain) -->
+        <video id="modal-video" controls playsinline class="hidden media-contain max-h-[70vh] max-w-full"></video>
+
+        <!-- Right Navigation Arrow -->
+        <button id="modal-next-btn" onclick="navigateModalGallery(1)" class="nier-card-arrow absolute right-3 top-1/2 -translate-y-1/2 z-20 py-3 px-3 text-sm font-bold shadow-lg" aria-label="Next Media">
+          ▶
+        </button>
+
+        <!-- In-Fullscreen Top-Right Exit Button -->
+        <button id="modal-viewport-exit-btn" onclick="toggleModalFullscreen()" class="modal-fs-only hidden absolute top-4 right-4 z-30 nier-menu-btn py-1.5 px-3 text-xs bg-black/85 text-[#dad5bf] border border-[#b4af9a] hover:bg-[#b4af9a] hover:text-[#312f28] shadow-lg items-center gap-1.5" title="Exit Fullscreen (ESC)">
+          <span>✕ EXIT FULLSCREEN</span>
+          <span class="text-[10px] text-[#a09c8d]">[ESC]</span>
+        </button>
+
+        <!-- In-Fullscreen Bottom HUD Bar -->
+        <div id="modal-viewport-fs-hud" class="modal-fs-only hidden absolute bottom-4 left-1/2 -translate-x-1/2 z-30 bg-black/85 px-4 py-2 border border-[#524e43] text-xs font-mono text-[#dad5bf] max-w-[92vw] items-center gap-3 shadow-2xl">
+          <span id="modal-fs-title" class="font-bold truncate max-w-[40vw]"></span>
+          <span id="modal-fs-counter" class="text-yorha-hazard shrink-0 font-bold"></span>
+          <div class="flex items-center gap-1.5 shrink-0">
+            <button onclick="navigateModalGallery(-1)" class="nier-menu-btn py-0.5 px-2 text-[10px]">◀ PREV</button>
+            <button onclick="navigateModalGallery(1)" class="nier-menu-btn py-0.5 px-2 text-[10px]">NEXT ▶</button>
+            <button onclick="toggleModalFullscreen()" class="nier-menu-btn py-0.5 px-2 text-[10px] ml-1 bg-yorha-hazard text-white border-transparent">✕ EXIT</button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Modal Footer Caption & Controls -->
+      <div class="p-3 sm:p-4 bg-[var(--bg-surface)] border-t border-[var(--border-line)] font-sans text-xs text-[var(--text-secondary)] flex flex-col sm:flex-row justify-between items-center gap-3">
+        <p id="modal-caption" class="leading-relaxed text-center sm:text-left"></p>
+        <div class="flex items-center gap-2 shrink-0 font-mono text-[11px]">
+          <button onclick="navigateModalGallery(-1)" class="nier-menu-btn py-1 px-2.5">◀ PREV</button>
+          <span id="modal-bottom-counter" class="text-[var(--text-dim)]"></span>
+          <button onclick="navigateModalGallery(1)" class="nier-menu-btn py-1 px-2.5">NEXT ▶</button>
+          <button onclick="closeMediaModalDirect()" class="nier-menu-btn py-1 px-3 ml-2">Close</button>
+        </div>
       </div>
 
     </div>
   </div>
 
   <!-- ========================================================================= -->
-  <!-- CLIENT JAVASCRIPT -->
+  <!-- CLIENT JAVASCRIPT: NIER SOUNDS, GALLERY, FULLSCREEN & INTERACTIVITY -->
   <!-- ========================================================================= -->
   <script>
-    // Theme toggle (Sand as in image.png vs Bunker Dark)
+    // -------------------------------------------------------------
+    // 1. Synthesized NieR: Automata Diegetic Audio Effects
+    // -------------------------------------------------------------
+    let audioCtx = null;
+    function getAudioContext() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    // NieR Confirm/Click Sound (Characteristic dual chime)
+    function playNierClickSound() {
+      try {
+        const ctx = getAudioContext();
+        const now = ctx.currentTime;
+        
+        // Tone 1: 1046Hz (C6)
+        const osc1 = ctx.createOscillator();
+        const gain1 = ctx.createGain();
+        osc1.type = 'triangle';
+        osc1.frequency.setValueAtTime(1046, now);
+        gain1.gain.setValueAtTime(0.09, now);
+        gain1.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
+        osc1.connect(gain1);
+        gain1.connect(ctx.destination);
+        osc1.start(now);
+        osc1.stop(now + 0.08);
+
+        // Tone 2: 1568Hz (G6) - 25ms later
+        const osc2 = ctx.createOscillator();
+        const gain2 = ctx.createGain();
+        osc2.type = 'triangle';
+        osc2.frequency.setValueAtTime(1568, now + 0.025);
+        gain2.gain.setValueAtTime(0.08, now + 0.025);
+        gain2.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
+        osc2.connect(gain2);
+        gain2.connect(ctx.destination);
+        osc2.start(now + 0.025);
+        osc2.stop(now + 0.12);
+      } catch (e) {}
+    }
+
+    // NieR Hover / Menu Cursor Blip
+    function playNierHoverSound() {
+      try {
+        const ctx = getAudioContext();
+        const now = ctx.currentTime;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(1400, now);
+        gain.gain.setValueAtTime(0.03, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.035);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.035);
+      } catch (e) {}
+    }
+
+    // Bind NieR SFX to all clicks and hovers across the page
+    document.addEventListener('click', (e) => {
+      if (e.target.closest('button, a, .nier-menu-btn, .nier-card-arrow, input[type="submit"], [onclick]')) {
+        playNierClickSound();
+      }
+    });
+
+    let lastHoveredTarget = null;
+    document.addEventListener('mouseover', (e) => {
+      const target = e.target.closest('button, a, .nier-menu-btn, .nier-card-arrow, [onclick]');
+      if (target && target !== lastHoveredTarget) {
+        lastHoveredTarget = target;
+        playNierHoverSound();
+      }
+    });
+
+    // -------------------------------------------------------------
+    // 2. Comprehensive Media Database (All Uploaded Images & Videos)
+    // -------------------------------------------------------------
+    const projectGalleries = {
+      // Whack-A-Word-Ham: All 9 Images (Priority #1 in Games)
+      whack: [
+        { type: 'image', src: 'Hardware-Software-Projects/Google Play Store Published/Whack-A-Word-Ham/IconImage_WhackAWordHam.png', title: 'Whack-A-Word-Ham // Official App Icon', caption: 'Official app icon for Google Play Store published word puzzle game.' },
+        { type: 'image', src: 'Hardware-Software-Projects/Google Play Store Published/Whack-A-Word-Ham/FeatureImage_WhackAWordHam.png', title: 'Whack-A-Word-Ham // Feature Banner', caption: 'Google Play Store official feature graphic banner.' },
+        { type: 'image', src: 'Hardware-Software-Projects/Google Play Store Published/Whack-A-Word-Ham/Screenshot_1_WhackAWordHam.jpg', title: 'Whack-A-Word-Ham // Screenshot 1', caption: 'Gameplay loop: rearranging letter sequences under time limit.' },
+        { type: 'image', src: 'Hardware-Software-Projects/Google Play Store Published/Whack-A-Word-Ham/Screenshot_2_WhackAWordHam.jpg', title: 'Whack-A-Word-Ham // Screenshot 2', caption: 'Main menu and stage selection interface in Kivy.' },
+        { type: 'image', src: 'Hardware-Software-Projects/Google Play Store Published/Whack-A-Word-Ham/Screenshot_3_WhackAWordHam.jpg', title: 'Whack-A-Word-Ham // Screenshot 3', caption: 'In-game score evaluation and dynamic word verification.' },
+        { type: 'image', src: 'Hardware-Software-Projects/Google Play Store Published/Whack-A-Word-Ham/Screenshot_4_WhackAWordHam.jpg', title: 'Whack-A-Word-Ham // Screenshot 4', caption: 'Interactive tile mechanics and responsive touch input.' },
+        { type: 'image', src: 'Hardware-Software-Projects/Google Play Store Published/Whack-A-Word-Ham/Screenshot_5_WhackAWordHam.jpg', title: 'Whack-A-Word-Ham // Screenshot 5', caption: 'Level progression mechanics and audio feedback.' },
+        { type: 'image', src: 'Hardware-Software-Projects/Google Play Store Published/Whack-A-Word-Ham/Screenshot_6_WhackAWordHam.jpg', title: 'Whack-A-Word-Ham // Screenshot 6', caption: 'Game over and high score leaderboards screen.' },
+        { type: 'image', src: 'Hardware-Software-Projects/Google Play Store Published/Whack-A-Word-Ham/Screenshot_7_WhackAWordHam.jpg', title: 'Whack-A-Word-Ham // Screenshot 7', caption: 'Settings and gameplay mode customization.' }
+      ],
+
+      // HoloLingua: 10 Media Items (Video + 9 Screenshots)
+      hololingua: [
+        { type: 'video', src: 'Hardware-Software-Projects/HoloLingua [My Final Year Project]/Hololingua.mp4', title: 'HoloLingua VR // Full Video Walkthrough', caption: 'Full Meta Quest VR walkthrough demonstration of AI conversational tutor.' },
+        { type: 'image', src: 'Hardware-Software-Projects/HoloLingua [My Final Year Project]/play (1).png', title: 'HoloLingua VR // Interactive Classroom', caption: 'Conversational dialogue interface with 3D avatar.' },
+        { type: 'image', src: 'Hardware-Software-Projects/HoloLingua [My Final Year Project]/6210832673970786080.jpg', title: 'HoloLingua VR // Scene 1', caption: 'Immersive VR environment rendering in Unity OpenXR.' },
+        { type: 'image', src: 'Hardware-Software-Projects/HoloLingua [My Final Year Project]/6210832673970786081.jpg', title: 'HoloLingua VR // Scene 2', caption: 'Convai SDK speech-to-text dialogue processing.' },
+        { type: 'image', src: 'Hardware-Software-Projects/HoloLingua [My Final Year Project]/6210832673970786086.jpg', title: 'HoloLingua VR // Scene 3', caption: 'Real-time feedback on user spoken vocabulary and grammar.' },
+        { type: 'image', src: 'Hardware-Software-Projects/HoloLingua [My Final Year Project]/6210832673970786088.jpg', title: 'HoloLingua VR // Scene 4', caption: 'Interactive language quiz exercise inside VR headset.' },
+        { type: 'image', src: 'Hardware-Software-Projects/HoloLingua [My Final Year Project]/6210832673970786089.jpg', title: 'HoloLingua VR // Scene 5', caption: 'Virtual lesson plan and learning module selection.' },
+        { type: 'image', src: 'Hardware-Software-Projects/HoloLingua [My Final Year Project]/6210832673970786090.jpg', title: 'HoloLingua VR // Scene 6', caption: 'Spatial audio and avatar mouth lip-sync animation.' },
+        { type: 'image', src: 'Hardware-Software-Projects/HoloLingua [My Final Year Project]/6210832673970786091.jpg', title: 'HoloLingua VR // Scene 7', caption: 'Optimized rendering build running on Meta Quest standalone.' },
+        { type: 'image', src: 'Hardware-Software-Projects/HoloLingua [My Final Year Project]/6210832673970786092.jpg', title: 'HoloLingua VR // Scene 8', caption: 'User performance review and fluency analytics.' }
+      ],
+
+      // MBPG Smart Tender Box: 8 Images
+      tender: [
+        { type: 'image', src: 'Hardware-Software-Projects/MBPG Smart Tender Box System/tenderA.jpg', title: 'MBPG Smart Tender Box // Physical System', caption: 'Automated physical tender box enclosure with electronic locks.' },
+        { type: 'image', src: 'Hardware-Software-Projects/MBPG Smart Tender Box System/hSetup.png', title: 'MBPG Smart Tender Box // Hardware Setup', caption: 'Raspberry Pi GPIO wiring, relay modules, sensors, and power circuitry.' },
+        { type: 'image', src: 'Hardware-Software-Projects/MBPG Smart Tender Box System/SystemArchiIntern-Page-2.drawio.png', title: 'MBPG Smart Tender Box // System Architecture', caption: 'Complete architectural flowchart: Web UI, Django REST API, and Raspberry Pi controller.' },
+        { type: 'image', src: 'Hardware-Software-Projects/MBPG Smart Tender Box System/Tenderboxlakaran.drawio.png', title: 'MBPG Smart Tender Box // Mechanical Sketch', caption: 'Mechanical layout and sensor positioning inside enclosure.' },
+        { type: 'image', src: 'Hardware-Software-Projects/MBPG Smart Tender Box System/Page_1.png', title: 'MBPG Smart Tender Box // System Documentation P1', caption: 'Technical documentation and operational manual.' },
+        { type: 'image', src: 'Hardware-Software-Projects/MBPG Smart Tender Box System/Page_2.png', title: 'MBPG Smart Tender Box // System Documentation P2', caption: 'API communication and solenoid override protocols.' },
+        { type: 'image', src: 'Hardware-Software-Projects/MBPG Smart Tender Box System/Page_3.png', title: 'MBPG Smart Tender Box // System Documentation P3', caption: 'Camera recording and audit trail logging.' },
+        { type: 'image', src: 'Hardware-Software-Projects/MBPG Smart Tender Box System/Page_4.png', title: 'MBPG Smart Tender Box // System Documentation P4', caption: 'Tkinter administrative GUI configuration.' }
+      ],
+
+      // Hosp-Tracker Navigation Robot: 14 Items (Video + 13 Images)
+      hosptracker: [
+        { type: 'image', src: 'Hardware-Software-Projects/Hosp-Tracker Navigation Robot [Robotic Design and Development Technology with Raspberry Pi Microprocessor]/Patient_POV_1.jpg', title: 'Hosp-Tracker // Companion Dashboard View 1', caption: 'Web dashboard tracking hospital patient flow alongside robot location.' },
+        { type: 'image', src: 'Hardware-Software-Projects/Hosp-Tracker Navigation Robot [Robotic Design and Development Technology with Raspberry Pi Microprocessor]/Patient_POV_2.jpg', title: 'Hosp-Tracker // Companion Dashboard View 2', caption: 'Real-time telemetry and patient destination assignment.' },
+        { type: 'image', src: 'Hardware-Software-Projects/Hosp-Tracker Navigation Robot [Robotic Design and Development Technology with Raspberry Pi Microprocessor]/Patient_POV_3.jpg', title: 'Hosp-Tracker // Companion Dashboard View 3', caption: 'Room routing status and autonomous navigation logs.' },
+        { type: 'image', src: 'Hardware-Software-Projects/Hosp-Tracker Navigation Robot [Robotic Design and Development Technology with Raspberry Pi Microprocessor]/Patient_POV_4.jpg', title: 'Hosp-Tracker // Companion Dashboard View 4', caption: 'Hospital floor plan coordinate synchronization.' },
+        { type: 'image', src: 'Hardware-Software-Projects/Hosp-Tracker Navigation Robot [Robotic Design and Development Technology with Raspberry Pi Microprocessor]/Patient_POV_5.jpg', title: 'Hosp-Tracker // Companion Dashboard View 5', caption: 'Patient arrival acknowledgment and sensor triggers.' },
+        { type: 'image', src: 'Hardware-Software-Projects/Hosp-Tracker Navigation Robot [Robotic Design and Development Technology with Raspberry Pi Microprocessor]/Patient_POV_6.jpg', title: 'Hosp-Tracker // Companion Dashboard View 6', caption: 'Administrative analytics and queue duration metrics.' },
+        { type: 'image', src: 'Hardware-Software-Projects/Hosp-Tracker Navigation Robot [Robotic Design and Development Technology with Raspberry Pi Microprocessor]/Patient_POV_7.jpg', title: 'Hosp-Tracker // Companion Dashboard View 7', caption: 'Summary report and patient care trajectory log.' },
+        { type: 'image', src: 'Hardware-Software-Projects/Hosp-Tracker Navigation Robot [Robotic Design and Development Technology with Raspberry Pi Microprocessor]/6093489640548537085.jpg', title: 'Hosp-Tracker // Robot Hardware', caption: 'Raspbot mobile robotic base with Raspberry Pi controller and ultrasonic sensors.' },
+        { type: 'image', src: 'Hardware-Software-Projects/Hosp-Tracker Navigation Robot [Robotic Design and Development Technology with Raspberry Pi Microprocessor]/6093489640548537086.jpg', title: 'Hosp-Tracker // Chassis Assembly', caption: 'Motor drivers and microcontroller circuit integration.' },
+        { type: 'image', src: 'Hardware-Software-Projects/Hosp-Tracker Navigation Robot [Robotic Design and Development Technology with Raspberry Pi Microprocessor]/6093489640548537102.jpg', title: 'Hosp-Tracker // Obstacle Sensing', caption: 'Sensor calibration for obstacle avoidance in clinic hallways.' },
+        { type: 'image', src: 'Hardware-Software-Projects/Hosp-Tracker Navigation Robot [Robotic Design and Development Technology with Raspberry Pi Microprocessor]/6093489640548537103.jpg', title: 'Hosp-Tracker // Navigation Testing', caption: 'Field testing autonomous path following on simulated hospital floors.' },
+        { type: 'image', src: 'Hardware-Software-Projects/Hosp-Tracker Navigation Robot [Robotic Design and Development Technology with Raspberry Pi Microprocessor]/6093489640548537104.jpg', title: 'Hosp-Tracker // Power & Circuitry', caption: 'Battery power regulation and Raspberry Pi GPIO connections.' },
+        { type: 'image', src: 'Hardware-Software-Projects/Hosp-Tracker Navigation Robot [Robotic Design and Development Technology with Raspberry Pi Microprocessor]/6093489640548537129.jpg', title: 'Hosp-Tracker // Team Certification', caption: 'KPT Robotic Design & Development Technology certificate practical work.' },
+        { type: 'video', src: 'Hardware-Software-Projects/Hosp-Tracker Navigation Robot [Robotic Design and Development Technology with Raspberry Pi Microprocessor]/Demo HospTracker.MOV', title: 'Hosp-Tracker // Demonstration Video', caption: 'Video recording demonstrating autonomous pathing and web telemetry sync.' }
+      ],
+
+      // Canva Website: 2 Images
+      webdesign: [
+        { type: 'image', src: 'Designs-Portfolio/Canva Section/Website Design/Cua0pUQRm.png', title: 'Canva Website // Primary View', caption: 'Live website designed and published in Canva (Matchacode).' },
+        { type: 'image', src: 'Designs-Portfolio/Canva Section/Website Design/FWhCNytsA.png', title: 'Canva Website // Content Sections', caption: 'Responsive layout and typography curation in Canva.' }
+      ],
+
+      // Canva Instagram Post: 3 Images
+      insta: [
+        { type: 'image', src: 'Designs-Portfolio/Canva Section/Instagram Post Design/InstagramPost_D2/1.png', title: 'Canva Social Post // Slide 1', caption: 'High-converting social card layout designed in Canva.' },
+        { type: 'image', src: 'Designs-Portfolio/Canva Section/Instagram Post Design/InstagramPost_D2/2.png', title: 'Canva Social Post // Slide 2', caption: 'Engaging typography and visual balance.' },
+        { type: 'image', src: 'Designs-Portfolio/Canva Section/Instagram Post Design/InstagramPost_D2/3.png', title: 'Canva Social Post // Slide 3', caption: 'Call to action and brand consistency.' }
+      ],
+
+      // Canva Presentation: 4 Images
+      pres: [
+        { type: 'image', src: 'Designs-Portfolio/Canva Section/Presentation Design/Presentation_D1/1.png', title: 'Canva Presentation // Slide 1', caption: 'Presentation title slide with clean layout hierarchy.' },
+        { type: 'image', src: 'Designs-Portfolio/Canva Section/Presentation Design/Presentation_D1/2.png', title: 'Canva Presentation // Slide 2', caption: 'Data visualization and structured key takeaways.' },
+        { type: 'image', src: 'Designs-Portfolio/Canva Section/Presentation Design/Presentation_D1/3.png', title: 'Canva Presentation // Slide 3', caption: 'Case study breakdown and methodology overview.' },
+        { type: 'image', src: 'Designs-Portfolio/Canva Section/Presentation Design/Presentation_D1/4.png', title: 'Canva Presentation // Slide 4', caption: 'Conclusion and strategic milestones roadmap.' }
+      ],
+
+      // Canva Business Cards: 6 Images
+      cards: [
+        { type: 'image', src: 'Designs-Portfolio/Canva Section/BusinessCard Design/BusinessCard_D8/1.png', title: 'Business Card // Variant 1 Front', caption: 'Minimalist corporate identity card design.' },
+        { type: 'image', src: 'Designs-Portfolio/Canva Section/BusinessCard Design/BusinessCard_D8/2.png', title: 'Business Card // Variant 1 Back', caption: 'Typography scale and contact block alignment.' },
+        { type: 'image', src: 'Designs-Portfolio/Canva Section/BusinessCard Design/14xA8$0tw.png', title: 'Business Card // Variant 2', caption: 'Creative branding layout with high contrast.' },
+        { type: 'image', src: 'Designs-Portfolio/Canva Section/BusinessCard Design/14xA8$0tw (1).png', title: 'Business Card // Variant 3', caption: 'Alternative color palette option.' },
+        { type: 'image', src: 'Designs-Portfolio/Canva Section/BusinessCard Design/f52952bac7d.png', title: 'Business Card // Variant 4', caption: 'Executive stationery card styling.' },
+        { type: 'image', src: 'Designs-Portfolio/Canva Section/BusinessCard Design/hCAluKsQhZ.png', title: 'Business Card // Variant 5', caption: 'Modern geometric layout.' }
+      ],
+
+      // Canva Editorial, Brochure, Menu & Collages: 6 Images
+      editorial: [
+        { type: 'image', src: 'Designs-Portfolio/Canva Section/Brochure Design/Brochure_D4.png', title: 'Brochure Design // Tri-Fold', caption: 'Full print tri-fold brochure layout designed in Canva.' },
+        { type: 'image', src: 'Designs-Portfolio/Canva Section/Menu Design/Ljt6YQVCvXc.png', title: 'Menu Design // Front Cover', caption: 'Restaurant menu layout with food photography and price grid.' },
+        { type: 'image', src: 'Designs-Portfolio/Canva Section/Menu Design/TP13P9OD1.png', title: 'Menu Design // Interior Spread', caption: 'Category divisions and culinary typography.' },
+        { type: 'image', src: 'Designs-Portfolio/Canva Section/Photo Collage Design/PhotoCollage_D5.png', title: 'Photo Collage Design // Grid 1', caption: 'Aesthetic photo collage layout with balanced margins.' },
+        { type: 'image', src: 'Designs-Portfolio/Canva Section/Photo Collage Design/DDYs8Poyp.png', title: 'Photo Collage Design // Grid 2', caption: 'Dynamic visual composition and color harmonies.' },
+        { type: 'image', src: 'Designs-Portfolio/Canva Section/Resume Design/Resume_D3.png', title: 'Resume Design // Canva Template', caption: 'Professional resume design layout.' }
+      ]
+    };
+
+    // -------------------------------------------------------------
+    // 3. In-Card Image Carousel Controller
+    // -------------------------------------------------------------
+    const cardSlideIndices = {
+      whack: 0,
+      hololingua: 0,
+      tender: 0,
+      hosptracker: 0,
+      webdesign: 0,
+      insta: 0,
+      pres: 0,
+      cards: 0,
+      editorial: 0
+    };
+
+    function changeCardSlide(cardKey, delta) {
+      const gallery = projectGalleries[cardKey];
+      if (!gallery || gallery.length === 0) return;
+
+      let idx = cardSlideIndices[cardKey] + delta;
+      if (idx < 0) idx = gallery.length - 1;
+      if (idx >= gallery.length) idx = 0;
+      cardSlideIndices[cardKey] = idx;
+
+      const imgEl = document.getElementById(`card-img-${cardKey}`);
+      const counterEl = document.getElementById(`card-counter-${cardKey}`);
+
+      if (imgEl) {
+        if (gallery[idx].type === 'image') {
+          imgEl.src = gallery[idx].src;
+        } else {
+          // If item is video, find first image in gallery as preview thumbnail
+          const firstImg = gallery.find(g => g.type === 'image');
+          if (firstImg) imgEl.src = firstImg.src;
+        }
+      }
+      if (counterEl) {
+        counterEl.textContent = `${idx + 1} / ${gallery.length}`;
+      }
+    }
+
+    // -------------------------------------------------------------
+    // 4. Modal Gallery Controller with Fullscreen Support
+    // -------------------------------------------------------------
+    let currentGalleryKey = null;
+    let currentGalleryIndex = 0;
+
+    const modalEl = document.getElementById('media-modal');
+    const modalBox = document.getElementById('modal-container-box');
+    const modalViewport = document.getElementById('modal-media-viewport');
+    const modalImg = document.getElementById('modal-img');
+    const modalVideo = document.getElementById('modal-video');
+    const modalTitle = document.getElementById('modal-title');
+    const modalCaption = document.getElementById('modal-caption');
+    const modalCounter = document.getElementById('modal-index-counter');
+    const modalBottomCounter = document.getElementById('modal-bottom-counter');
+
+    function openProjectGallery(key, startIdx = null) {
+      currentGalleryKey = key;
+      currentGalleryIndex = startIdx !== null ? startIdx : (cardSlideIndices[key] || 0);
+      renderModalItem();
+      modalEl.classList.remove('hidden');
+      document.body.classList.add('overflow-hidden');
+    }
+
+    function openMediaModal(type, src, title, caption) {
+      currentGalleryKey = null;
+      modalTitle.textContent = title;
+      modalCaption.textContent = caption;
+      modalCounter.textContent = '';
+      modalBottomCounter.textContent = '';
+
+      const fsTitle = document.getElementById('modal-fs-title');
+      const fsCounter = document.getElementById('modal-fs-counter');
+      if (fsTitle) fsTitle.textContent = title;
+      if (fsCounter) fsCounter.textContent = '';
+
+      document.getElementById('modal-prev-btn').classList.add('hidden');
+      document.getElementById('modal-next-btn').classList.add('hidden');
+
+      if (type === 'video') {
+        modalImg.classList.add('hidden');
+        modalVideo.classList.remove('hidden');
+        modalVideo.src = src;
+        modalVideo.play().catch(() => {});
+      } else {
+        modalVideo.pause();
+        modalVideo.src = '';
+        modalVideo.classList.add('hidden');
+        modalImg.classList.remove('hidden');
+        modalImg.src = src;
+      }
+
+      modalEl.classList.remove('hidden');
+      document.body.classList.add('overflow-hidden');
+    }
+
+    function renderModalItem() {
+      if (!currentGalleryKey) return;
+      const gallery = projectGalleries[currentGalleryKey];
+      if (!gallery) return;
+
+      const item = gallery[currentGalleryIndex];
+      modalTitle.textContent = item.title;
+      modalCaption.textContent = item.caption;
+      modalCounter.textContent = `[ ${currentGalleryIndex + 1} / ${gallery.length} ]`;
+      modalBottomCounter.textContent = `${currentGalleryIndex + 1} of ${gallery.length}`;
+
+      const fsTitle = document.getElementById('modal-fs-title');
+      const fsCounter = document.getElementById('modal-fs-counter');
+      if (fsTitle) fsTitle.textContent = item.title;
+      if (fsCounter) fsCounter.textContent = `[ ${currentGalleryIndex + 1} / ${gallery.length} ]`;
+
+      document.getElementById('modal-prev-btn').classList.remove('hidden');
+      document.getElementById('modal-next-btn').classList.remove('hidden');
+
+      if (item.type === 'video') {
+        modalImg.classList.add('hidden');
+        modalVideo.classList.remove('hidden');
+        modalVideo.src = item.src;
+        modalVideo.play().catch(() => {});
+      } else {
+        modalVideo.pause();
+        modalVideo.src = '';
+        modalVideo.classList.add('hidden');
+        modalImg.classList.remove('hidden');
+        modalImg.src = item.src;
+      }
+    }
+
+    function navigateModalGallery(delta) {
+      if (!currentGalleryKey) return;
+      const gallery = projectGalleries[currentGalleryKey];
+      if (!gallery) return;
+
+      currentGalleryIndex = (currentGalleryIndex + delta + gallery.length) % gallery.length;
+      // Sync with card
+      cardSlideIndices[currentGalleryKey] = currentGalleryIndex;
+      const imgEl = document.getElementById(`card-img-${currentGalleryKey}`);
+      const counterEl = document.getElementById(`card-counter-${currentGalleryKey}`);
+      if (imgEl && gallery[currentGalleryIndex].type === 'image') {
+        imgEl.src = gallery[currentGalleryIndex].src;
+      }
+      if (counterEl) {
+        counterEl.textContent = `${currentGalleryIndex + 1} / ${gallery.length}`;
+      }
+
+      renderModalItem();
+    }
+
+    // Fullscreen Feature (Button-triggered with fallback support)
+    function isFullscreenActive() {
+      return !!(document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement);
+    }
+
+    function toggleModalFullscreen() {
+      const fsBtn = document.getElementById('modal-fullscreen-btn');
+      if (!isFullscreenActive()) {
+        const req = modalViewport.requestFullscreen || modalViewport.webkitRequestFullscreen || modalViewport.mozRequestFullScreen || modalViewport.msRequestFullscreen;
+        if (req) {
+          req.call(modalViewport).catch(() => {});
+        }
+        if (fsBtn) fsBtn.innerHTML = '<span>✕ EXIT FULLSCREEN</span>';
+      } else {
+        const exit = document.exitFullscreen || document.webkitExitFullscreen || document.mozCancelFullScreen || document.msExitFullscreen;
+        if (exit) {
+          exit.call(document).catch(() => {});
+        }
+        if (fsBtn) fsBtn.innerHTML = '<span>⛶ FULLSCREEN</span>';
+      }
+    }
+
+    function syncFullscreenState() {
+      const fsBtn = document.getElementById('modal-fullscreen-btn');
+      if (fsBtn) {
+        fsBtn.innerHTML = isFullscreenActive() ? '<span>✕ EXIT FULLSCREEN</span>' : '<span>⛶ FULLSCREEN</span>';
+      }
+    }
+
+    document.addEventListener('fullscreenchange', syncFullscreenState);
+    document.addEventListener('webkitfullscreenchange', syncFullscreenState);
+    document.addEventListener('mozfullscreenchange', syncFullscreenState);
+    document.addEventListener('MSFullscreenChange', syncFullscreenState);
+
+    function closeMediaModalDirect() {
+      if (isFullscreenActive()) {
+        const exit = document.exitFullscreen || document.webkitExitFullscreen || document.mozCancelFullScreen || document.msExitFullscreen;
+        if (exit) exit.call(document).catch(() => {});
+      }
+      modalVideo.pause();
+      modalVideo.src = '';
+      modalImg.src = '';
+      modalEl.classList.add('hidden');
+      document.body.classList.remove('overflow-hidden');
+    }
+
+    function closeMediaModal(e) {
+      if (e.target === modalEl) {
+        closeMediaModalDirect();
+      }
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if (!modalEl.classList.contains('hidden')) {
+        if (e.key === 'Escape') closeMediaModalDirect();
+        if (e.key === 'ArrowLeft') navigateModalGallery(-1);
+        if (e.key === 'ArrowRight') navigateModalGallery(1);
+      }
+    });
+
+    // -------------------------------------------------------------
+    // 5. Theme Toggle, Resume & Contact Logic
+    // -------------------------------------------------------------
     function toggleTheme() {
       const root = document.documentElement;
       const btnText = document.getElementById('theme-btn-text');
@@ -1327,13 +1876,11 @@
       }
     })();
 
-    // Menu active state switcher
     function activateMenu(btn) {
       document.querySelectorAll('.nier-menu-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
     }
 
-    // Mobile menu toggle
     const mBtn = document.getElementById('mobile-toggle-btn');
     const mDrawer = document.getElementById('mobile-drawer');
     if (mBtn && mDrawer) {
@@ -1345,7 +1892,6 @@
       });
     }
 
-    // Toast notification
     function showToast(msg) {
       const container = document.getElementById('toast-container');
       const t = document.createElement('div');
@@ -1367,53 +1913,6 @@
       showToast('Opening resume dossier (NEW-RESUME.pdf)...');
       window.open('NEW-RESUME.pdf', '_blank');
     }
-
-    // Modal Media Inspector (Images and Videos)
-    const modalEl = document.getElementById('media-modal');
-    const modalImg = document.getElementById('modal-img');
-    const modalVideo = document.getElementById('modal-video');
-    const modalTitle = document.getElementById('modal-title');
-    const modalCaption = document.getElementById('modal-caption');
-
-    function openMediaModal(type, src, title, caption) {
-      modalTitle.textContent = title;
-      modalCaption.textContent = caption;
-
-      if (type === 'video') {
-        modalImg.classList.add('hidden');
-        modalVideo.classList.remove('hidden');
-        modalVideo.src = src;
-        modalVideo.play().catch(() => {});
-      } else {
-        modalVideo.pause();
-        modalVideo.classList.add('hidden');
-        modalImg.classList.remove('hidden');
-        modalImg.src = src;
-      }
-
-      modalEl.classList.remove('hidden');
-      document.body.classList.add('overflow-hidden');
-    }
-
-    function closeMediaModalDirect() {
-      modalVideo.pause();
-      modalVideo.src = '';
-      modalImg.src = '';
-      modalEl.classList.add('hidden');
-      document.body.classList.remove('overflow-hidden');
-    }
-
-    function closeMediaModal(e) {
-      if (e.target === modalEl) {
-        closeMediaModalDirect();
-      }
-    }
-
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && !modalEl.classList.contains('hidden')) {
-        closeMediaModalDirect();
-      }
-    });
 
     function handleContact(e) {
       e.preventDefault();
