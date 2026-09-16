@@ -1288,7 +1288,10 @@
             <span class="text-[10px] text-[var(--text-dim)] uppercase block">EMAIL ADDRESS:</span>
             <div class="flex items-center justify-between gap-2 mt-1">
               <span class="font-bold text-sm text-[var(--text-main)]">kairairaila@gmail.com</span>
-              <button onclick="copyText('kairairaila@gmail.com', 'Email copied')" class="nier-menu-btn py-1 px-2.5 text-[10px]">[ COPY ]</button>
+              <div class="flex items-center gap-1.5 shrink-0">
+                <a href="mailto:kairairaila@gmail.com" class="nier-menu-btn py-1 px-2.5 text-[10px]">[ EMAIL ]</a>
+                <button onclick="copyText('kairairaila@gmail.com', 'Email copied')" class="nier-menu-btn py-1 px-2.5 text-[10px]">[ COPY ]</button>
+              </div>
             </div>
           </div>
 
@@ -1962,7 +1965,14 @@
           })
         });
 
-        if (res.ok) {
+        const data = await res.json().catch(() => null);
+        if (data && (data.success === "true" || data.success === true)) {
+          showToast('Transmission delivered! Sent directly to kairairaila@gmail.com.');
+          document.querySelector('form').reset();
+        } else if (data && data.message && data.message.toLowerCase().includes('activation')) {
+          showToast('Action required: Activation email sent! Check Spam/Inbox on kairairaila@gmail.com.');
+          document.querySelector('form').reset();
+        } else if (res.ok) {
           showToast('Transmission dispatched! Sent to kairairaila@gmail.com.');
           document.querySelector('form').reset();
         } else {
