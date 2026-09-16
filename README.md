@@ -36,7 +36,7 @@
 - **Hosp-Tracker Navigation Robot**: Autonomous navigation robot for medical wards with companion real-time telemetry dashboard.
 
 ### 3. Graphic Design & Canva Portfolio
-- **Food Arcade Dining Table App**: Interactive Figma UI/UX prototype with user testing sessions. [Figma Prototype](https://www.figma.com/proto/Q1V71P9fgFQn5mjX3VUECO/arked-Meranti-TableReserved?node-id=309-28&starting-point-node-id=103%3A4&t=RJAYZETN1KfvvOhF-1).
+- **Food Arcade Dining Table App**: Interactive Figma UI/UX prototype with user testing sessions. [Figma Prototype](https://www.figma.com/proto/Q1V71P9fgFQn5mjX3VUECO/arked-Meranti-TableReserved?node-id=103-4&starting-point-node-id=103%3A4&t=RJAYZETN1KfvvOhF-1).
 - **Canva Published Website**: Live website designed in Canva. [Visit Website](https://matchacode.my.canva.site/website-d6/).
 - **Canva Master Portfolio**: Complete collection of branding, social kits, and stationery. [Canva Portfolio](https://canva.link/3h9efrqll820h0u).
 - **Canva Design School Certificate**: Graphic Design Essentials certification.
