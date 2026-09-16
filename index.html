@@ -1934,16 +1934,49 @@
       window.open('NEW-RESUME.pdf', '_blank');
     }
 
-    function handleContact(e) {
+    async function handleContact(e) {
       e.preventDefault();
       const btn = document.getElementById('c-btn');
       const original = btn.innerHTML;
       btn.innerHTML = '<span>[ TRANSMITTING PACKET... ]</span>';
-      setTimeout(() => {
-        showToast('Transmission received! Thank you, Fakhirah will reply soon.');
-        document.querySelector('form').reset();
+      btn.disabled = true;
+
+      const name = document.getElementById('c-name').value;
+      const email = document.getElementById('c-email').value;
+      const category = document.getElementById('c-category').value;
+      const message = document.getElementById('c-msg').value;
+
+      try {
+        const res = await fetch("https://formsubmit.co/ajax/kairairaila@gmail.com", {
+          method: "POST",
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            name: name,
+            email: email,
+            category: category,
+            message: message,
+            _subject: `[Portfolio Inquiry] ${category} from ${name}`
+          })
+        });
+
+        if (res.ok) {
+          showToast('Transmission dispatched! Sent to kairairaila@gmail.com.');
+          document.querySelector('form').reset();
+        } else {
+          // Fallback to mailto client
+          window.location.href = `mailto:kairairaila@gmail.com?subject=${encodeURIComponent('[Inquiry] ' + category)}&body=${encodeURIComponent('From: ' + name + ' (' + email + ')\n\n' + message)}`;
+          showToast('Opening default email client to send transmission...');
+        }
+      } catch (err) {
+        window.location.href = `mailto:kairairaila@gmail.com?subject=${encodeURIComponent('[Inquiry] ' + category)}&body=${encodeURIComponent('From: ' + name + ' (' + email + ')\n\n' + message)}`;
+        showToast('Opening default email client to send transmission...');
+      } finally {
         btn.innerHTML = original;
-      }, 1000);
+        btn.disabled = false;
+      }
     }
   </script>
 </body>
